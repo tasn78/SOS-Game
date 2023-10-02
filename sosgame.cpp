@@ -127,36 +127,38 @@ void SOSGame::gameBoardButtonClick(){
         return;
     }
 
-    int playerTurn = Players::getPlayerTurn();
+    int playerTurn = GamePlayers.getPlayerTurn();
 
     if (playerTurn == 1){
-        clickedButton->setText(Players::getPlayer1Move());
+        clickedButton->setText(GamePlayers.getPlayer1Move());
     }
     else if (playerTurn == 2){
-        clickedButton->setText(Players::getPlayer2Move());
+        clickedButton->setText(GamePlayers.getPlayer2Move());
     }
     else{
         QMessageBox::critical(this, "You must choose an S or O", "");
     }
+
+
 }
 
 
 void SOSGame::on_player1_S_clicked()
 {
-    Players::setPlayer1Move('S');
+    GamePlayers.setPlayer1Move("S");
 
 }
 
 
 void SOSGame::on_player1_O_clicked()
 {
-    Players::setPlayer1Move('O');
+    GamePlayers.setPlayer1Move("O");
 }
 
 
 void SOSGame::on_player2_S_clicked()
 {
-    Players::setPlayer2Move('S');
+    GamePlayers.setPlayer2Move("S");
 }
 
 
@@ -164,6 +166,6 @@ void SOSGame::on_player2_S_clicked()
 
 void SOSGame::on_player2_O_clicked()
 {
-    Players::setPlayer2Move('O');
+    GamePlayers.setPlayer2Move("O");
 }
 

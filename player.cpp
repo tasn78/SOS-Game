@@ -24,21 +24,21 @@ void Player::makeMove(){
 */
 
 
-void Players::setPlayer1Move(char S_or_O){
+void Players::setPlayer1Move(QString S_or_O){
     player1Move = S_or_O;
 }
 
 
-char Players::getPlayer1Move(){
+QString Players::getPlayer1Move(){
     return player1Move;
 }
 
 
-void Players::setPlayer2Move(char S_or_O){
+void Players::setPlayer2Move(QString S_or_O){
     player2Move = S_or_O;
 }
 
 
-char Players::getPlayer2Move(){
+QString Players::getPlayer2Move(){
     return player2Move;
 }

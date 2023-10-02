@@ -3,6 +3,9 @@
 #ifndef SOSGAME_H
 #define SOSGAME_H
 
+#include "ui_sosgame.h"
+#include "player.h"
+
 #include <QMainWindow>
 #include <cstddef>
 #include <QWidget>
@@ -10,7 +13,6 @@
 #include <vector>
 #include <QMessageBox>
 #include <QGridLayout>
-#include "ui_sosgame.h"
 #include <QString>
 #include <QApplication>
 #include <QMessageBox>
@@ -91,6 +93,7 @@ private:
     std::vector<Cell> GameState;
     char GameMode;
     bool GameOver;
+    Players GamePlayers;
 };
 
 
