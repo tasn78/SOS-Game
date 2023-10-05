@@ -21,6 +21,7 @@
 #include <QTableWidgetItem>
 #include <QHeaderView>
 #include <QVBoxLayout>
+#include <QtGui>
 
 
 QT_BEGIN_NAMESPACE

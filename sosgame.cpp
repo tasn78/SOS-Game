@@ -46,22 +46,36 @@ void SOSGame::on_StartButton_clicked()
 
 void SOSGame::createGameBoard(int boardSize) {
     ui->SOSGameBoard->clearContents();
-    ui->SOSGameBoard->setFrameStyle((QFrame::NoFrame));
+    int newsize = boardSize *30;
+
     ui->SOSGameBoard->setRowCount(boardSize);
     ui->SOSGameBoard->setColumnCount(boardSize);
+    ui->SOSGameBoard->setMaximumSize(newsize, newsize);
+
+
 
     for (int i = 0; i < boardSize; i++){
         for (int j= 0; j < boardSize; j++){
-            ui->SOSGameBoard->setItem(i,j, new QTableWidgetItem());
+            //ui->SOSGameBoard->setItem(i,j, new QTableWidgetItem());
             QPushButton* button = new QPushButton();
             button->setText("");
+            button->setBaseSize(newsize / boardSize, newsize / boardSize);
+            ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             ui->SOSGameBoard->setCellWidget(i,j,(QWidget*)button);
-            button->sizeHint();
-            button->setSizeIncrement(20, 20);
+            //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             connect(button, SIGNAL(clicked()), this, SLOT(gameBoardButtonClick()));
+            ui->SOSGameBoard->setColumnWidth(i, 30);
+            ui->SOSGameBoard->setRowHeight(j, 30);
+
         }
     }
-    ui->SOSGameBoard->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
+
+    //ui->SOSGameBoard->sizeHint();
+    int resize = boardSize *30;
+    ui->SOSGameBoard->setMinimumSize(resize, resize);
+    //ui->SOSGameBoard->setMaximumWidth(boardSize * 30);
+
+
 }
 
 //  Previously used code for the gameboard, not currently used
