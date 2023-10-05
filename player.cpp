@@ -15,14 +15,14 @@ int Players::getPlayerTurn(){
     return playerTurn;
 }
 
-/*
-void Player::makeMove(){
-    if (playerTurn == 1){
-        if (radio);
+void Players::switchPlayerTurn(){
+    if (this->getPlayerTurn() == 1){
+        this->setPlayerTurn(2);
+    }
+    else if (this->getPlayerTurn() == 2){
+        this->setPlayerTurn(1);
     }
 }
-*/
-
 
 void Players::setPlayer1Move(QString S_or_O){
     player1Move = S_or_O;

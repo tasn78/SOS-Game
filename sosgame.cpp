@@ -56,11 +56,15 @@ void SOSGame::createGameBoard(int boardSize) {
             QPushButton* button = new QPushButton();
             button->setText("");
             ui->SOSGameBoard->setCellWidget(i,j,(QWidget*)button);
+            button->sizeHint();
+            button->setSizeIncrement(20, 20);
             connect(button, SIGNAL(clicked()), this, SLOT(gameBoardButtonClick()));
         }
     }
+    ui->SOSGameBoard->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
 }
 
+//  Previously used code for the gameboard, not currently used
 /*  Creates a gameboard using QGridTable
 std::vector<Cell> SOSGame::buildCellButtons(int boardSize) {
         // Create a 2D vector to hold the Cell objects
@@ -102,10 +106,13 @@ void SOSGame::on_SimpleGameButton_clicked()
     setGameMode('S');
 }
 
+
+
 void SOSGame::on_GeneralGameButton_clicked()
 {
     setGameMode('G');
 }
+
 
 
 void SOSGame::setGameMode(char gameType)
@@ -113,27 +120,39 @@ void SOSGame::setGameMode(char gameType)
     GameMode = gameType;
 }
 
+
+
 char SOSGame::getGameMode()
 {
     return GameMode;
 }
 
 
+
 void SOSGame::gameBoardButtonClick(){
     QPushButton* clickedButton = qobject_cast<QPushButton*>(sender()); // Used from ChatGPT
 
-    if (!clickedButton) {
-        // Handle the case where sender() is not a QPushButton
+    if (!clickedButton) {  // Handles the case where user does not click a QPushbutton
         return;
     }
 
     int playerTurn = GamePlayers.getPlayerTurn();
 
     if (playerTurn == 1){
+        if (clickedButton->text()== ""){
         clickedButton->setText(GamePlayers.getPlayer1Move());
+            if (clickedButton->text() != ""){
+                GamePlayers.switchPlayerTurn();
+            }
+        }
     }
     else if (playerTurn == 2){
+        if (clickedButton->text()== ""){
         clickedButton->setText(GamePlayers.getPlayer2Move());
+            if (clickedButton->text() != ""){
+            GamePlayers.switchPlayerTurn();
+            }
+        }
     }
     else{
         QMessageBox::critical(this, "You must choose an S or O", "");
@@ -143,17 +162,19 @@ void SOSGame::gameBoardButtonClick(){
 }
 
 
+
 void SOSGame::on_player1_S_clicked()
 {
     GamePlayers.setPlayer1Move("S");
-
 }
+
 
 
 void SOSGame::on_player1_O_clicked()
 {
     GamePlayers.setPlayer1Move("O");
 }
+
 
 
 void SOSGame::on_player2_S_clicked()

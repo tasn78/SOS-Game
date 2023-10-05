@@ -14,8 +14,11 @@ public:
 
     void setPlayerTurn(int);
     int getPlayerTurn();
+    void switchPlayerTurn();
+
     //void setPlayer1Score();
     //int getPlayer1Score();
+
     void setPlayer1Move(QString);
     QString getPlayer1Move();
     void setPlayer2Move(QString);
