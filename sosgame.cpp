@@ -45,6 +45,7 @@ void SOSGame::on_StartButton_clicked()
 
 
 void SOSGame::createGameBoard(int boardSize) {
+    GamePlayers.setPlayerTurn(1);
     ui->SOSGameBoard->clearContents();
     int newsize = boardSize *30;
 
@@ -70,9 +71,7 @@ void SOSGame::createGameBoard(int boardSize) {
         }
     }
 
-    //ui->SOSGameBoard->sizeHint();
-    int resize = boardSize *30;
-    ui->SOSGameBoard->setMinimumSize(resize, resize);
+    ui->SOSGameBoard->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     //ui->SOSGameBoard->setMaximumWidth(boardSize * 30);
 
 
@@ -155,6 +154,7 @@ void SOSGame::gameBoardButtonClick(){
     if (playerTurn == 1){
         if (clickedButton->text()== ""){
         clickedButton->setText(GamePlayers.getPlayer1Move());
+        clickedButton->setStyleSheet("color: blue;");
             if (clickedButton->text() != ""){
                 GamePlayers.switchPlayerTurn();
             }
@@ -163,6 +163,7 @@ void SOSGame::gameBoardButtonClick(){
     else if (playerTurn == 2){
         if (clickedButton->text()== ""){
         clickedButton->setText(GamePlayers.getPlayer2Move());
+        clickedButton->setStyleSheet("color: red;");
             if (clickedButton->text() != ""){
             GamePlayers.switchPlayerTurn();
             }
@@ -202,5 +203,11 @@ void SOSGame::on_player2_S_clicked()
 void SOSGame::on_player2_O_clicked()
 {
     GamePlayers.setPlayer2Move("O");
+}
+
+
+void SOSGame::on_pushButton_clicked()
+{
+    exit(1);
 }
 

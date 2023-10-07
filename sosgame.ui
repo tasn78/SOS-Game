@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -33,6 +33,46 @@
     </size>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Player 2</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="player2_S">
+        <property name="text">
+         <string>S</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">Player2MoveButtonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="player2_O">
+        <property name="text">
+         <string>O</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">Player2MoveButtonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="0" colspan="3">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="sizeConstraint">
@@ -43,6 +83,9 @@
         <property name="text">
          <string>Simple Game</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">GameTypeButtonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item>
@@ -50,6 +93,9 @@
         <property name="text">
          <string>General Game</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">GameTypeButtonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item>
@@ -123,6 +169,9 @@
         <property name="text">
          <string>S</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">Player1MoveButtonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item>
@@ -130,6 +179,9 @@
         <property name="text">
          <string>O</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">Player1MoveButtonGroup</string>
+        </attribute>
        </widget>
       </item>
      </layout>
@@ -145,7 +197,7 @@
       <property name="spacing">
        <number>0</number>
       </property>
-      <item row="0" column="0">
+      <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QTableWidget" name="SOSGameBoard">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -190,60 +242,35 @@
       </item>
      </layout>
     </item>
-    <item row="2" column="2">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Quit Game</string>
       </property>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Player 2</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="player2_S">
-        <property name="text">
-         <string>S</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="player2_O">
-        <property name="text">
-         <string>O</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>933</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuSOS_Game">
-    <property name="title">
-     <string>SOS Game</string>
-    </property>
-   </widget>
-   <addaction name="menuSOS_Game"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="Player1MoveButtonGroup"/>
+  <buttongroup name="GameTypeButtonGroup"/>
+  <buttongroup name="Player2MoveButtonGroup"/>
+ </buttongroups>
 </ui>

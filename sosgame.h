@@ -88,6 +88,8 @@ private slots:
     void on_player2_O_clicked();
 
 
+    void on_pushButton_clicked();
+
 private:
     Ui::SOSGame *ui;
     int boardSize = 3;
