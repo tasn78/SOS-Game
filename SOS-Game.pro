@@ -10,13 +10,17 @@ CONFIG += c++17
 
 SOURCES += \
     gamemode.cpp \
+    generalgame.cpp \
     main.cpp \
     player.cpp \
+    simplegame.cpp \
     sosgame.cpp
 
 HEADERS += \
     gamemode.h \
+    generalgame.h \
     player.h \
+    simplegame.h \
     sosgame.h
 
 FORMS += \

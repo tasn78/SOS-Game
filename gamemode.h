@@ -2,6 +2,8 @@
 #define GAMEMODE_H
 
 #include <QPainter>
+#include <QTableWidget>
+#include <ui_sosgame.h>
 
 
 class GameMode
@@ -16,7 +18,10 @@ public:
     void checkForSOS();
 
     // Checks for a win or draw
-    checkGameCompletion();
+    virtual bool checkForWin(QTableWidget* gameBoard) = 0;
+
+    // Checks if GameBoard is full
+    virtual bool checkGameCompletion(QTableWidget* gameBoard) = 0;
 
 private:
 
