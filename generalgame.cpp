@@ -4,3 +4,9 @@ GeneralGame::GeneralGame()
 {
 
 }
+
+GeneralGame::~GeneralGame()
+{
+
+}
+

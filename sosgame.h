@@ -5,6 +5,8 @@
 
 #include "ui_sosgame.h"
 #include "player.h"
+#include "gamemode.h"
+#include "simplegame.h"
 
 #include <QMainWindow>
 #include <cstddef>
@@ -61,10 +63,11 @@ public:
     void setGameState(std::vector<Cell>);
     //std::vector<Cell> getGameState();
 
-    void setGameMode(char);
-    char getGameMode();
+    void setGameType(char);
+    char getGameType();
 
-    bool isGameOver();
+    bool isGameOver(int row, int column, QTableWidget* gameBoard, int boardSize);
+
 
 
 private slots:
@@ -87,14 +90,14 @@ private slots:
 
     void on_player2_O_clicked();
 
-
     void on_pushButton_clicked();
+
 
 private:
     Ui::SOSGame *ui;
     int boardSize = 3;
     std::vector<Cell> GameState;
-    char GameMode;
+    char GameType;
     bool GameOver;
     Players GamePlayers;
 };

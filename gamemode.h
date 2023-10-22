@@ -3,7 +3,8 @@
 
 #include <QPainter>
 #include <QTableWidget>
-#include <ui_sosgame.h>
+
+#include "ui_sosgame.h"
 
 
 class GameMode
@@ -15,7 +16,7 @@ public:
     ~GameMode();
 
     // Checks for SOS on GameBoard
-    void checkForSOS();
+    bool checkForSOS(int row, int column, QTableWidget* gameBoard, int boardSize);
 
     // Checks for a win or draw
     virtual bool checkForWin(QTableWidget* gameBoard) = 0;
@@ -23,12 +24,19 @@ public:
     // Checks if GameBoard is full
     virtual bool checkGameCompletion(QTableWidget* gameBoard) = 0;
 
+    // Checks if rows and columns are valid when checking for SOS
+    bool isRowValid(int row, int boardSize);
+    bool isColumnValid(int column, int boardSize);
+
+    // Draws a line through the SOS
+    void drawLineThroughSOS(int row, int column, int direction, int playerTurn, int boardSize, QTableWidget* SOSGameBoard);
+
 private:
+    char gameType;
 
 protected:
     // Highlights the 3 pushbuttons that form SOS
     QPen highlightPen;
-
 
 };
 

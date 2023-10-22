@@ -6,12 +6,11 @@
 class SimpleGame : public GameMode
 {
 public:
-    SimpleGame();
-    ~SimpleGame();
+    SimpleGame(){}
 
-    bool checkForWin(QTableWidget* gameBoard) override;
+    bool checkForWin(QTableWidget* gameBoard);
 
-    bool checkGameCompletion(QTableWidget* gameBoard) override;
+    bool checkGameCompletion(QTableWidget* gameBoard);
 };
 
 #endif // SIMPLEGAME_H

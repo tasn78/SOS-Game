@@ -189,7 +189,7 @@
     <item row="2" column="1">
      <layout class="QGridLayout" name="GameBoard" rowstretch="0" columnstretch="0">
       <property name="sizeConstraint">
-       <enum>QLayout::SetFixedSize</enum>
+       <enum>QLayout::SetNoConstraint</enum>
       </property>
       <property name="rightMargin">
        <number>0</number>
@@ -207,14 +207,20 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>399</width>
-          <height>339</height>
+          <width>500</width>
+          <height>500</height>
          </size>
         </property>
         <property name="sizeIncrement">
          <size>
-          <width>4</width>
-          <height>1</height>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>500</width>
+          <height>500</height>
          </size>
         </property>
         <property name="verticalScrollBarPolicy">
@@ -270,7 +276,7 @@
  <connections/>
  <buttongroups>
   <buttongroup name="Player1MoveButtonGroup"/>
-  <buttongroup name="GameTypeButtonGroup"/>
   <buttongroup name="Player2MoveButtonGroup"/>
+  <buttongroup name="GameTypeButtonGroup"/>
  </buttongroups>
 </ui>

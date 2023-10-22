@@ -1,6 +1,11 @@
 #include "simplegame.h"
 
-SimpleGame::SimpleGame()
-{
+bool SimpleGame::checkForWin(QTableWidget* gameBoard){
+    gameBoard;
+    return true;
+}
 
+bool SimpleGame::checkGameCompletion(QTableWidget* gameBoard){
+    gameBoard;
+    return true;
 }
