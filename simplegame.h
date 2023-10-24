@@ -8,9 +8,9 @@ class SimpleGame : public GameMode
 public:
     SimpleGame(){}
 
-    bool checkForWin(QTableWidget* gameBoard);
+    bool checkForWin(std::vector<std::vector<QPushButton*>>& gameBoard);
 
-    bool checkGameCompletion(QTableWidget* gameBoard);
+    bool checkGameCompletion(std::vector<std::vector<QPushButton*>>& gameBoard);
 };
 
 #endif // SIMPLEGAME_H

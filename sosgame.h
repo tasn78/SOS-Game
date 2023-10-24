@@ -26,27 +26,6 @@
 #include <QtGui>
 
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class SOSGame; }
-QT_END_NAMESPACE
-
-
-struct Cell
-{
-    QPushButton *cellBtn = nullptr;
-    int row = -1;
-    int col = -1;
-    Cell(QPushButton *cellBtn, int row, int col)
-        : cellBtn(cellBtn), row(row), col(col) {}
-};
-
-
-enum class BoardMoves { Empty, S, O };
-
-enum class BoardState { Draw, Player1Win, Player2Win };
-
-
-
 class SOSGame : public QMainWindow
 {
     Q_OBJECT
@@ -60,13 +39,13 @@ public:
     void createGameBoard(int boardSize);
 
 
-    void setGameState(std::vector<Cell>);
-    //std::vector<Cell> getGameState();
+    void setGameState(int boardSize, std::vector<std::vector<QPushButton*>>);
+    std::vector<std::vector<QPushButton*>> getGameState();
 
     void setGameType(char);
     char getGameType();
 
-    bool isGameOver(int row, int column, QTableWidget* gameBoard, int boardSize);
+    bool isGameOver(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize);
 
 
 
@@ -95,8 +74,8 @@ private slots:
 
 private:
     Ui::SOSGame *ui;
+    std::vector<std::vector<QPushButton*>> vectorBoard;
     int boardSize = 3;
-    std::vector<Cell> GameState;
     char GameType;
     bool GameOver;
     Players GamePlayers;

@@ -12,7 +12,7 @@ GameMode::~GameMode(){
 }
 
 //  Checks all directions for SOS from button click on game board
-bool GameMode::checkForSOS(int row, int column, QTableWidget* gameBoard, int boardSize) {
+bool GameMode::checkForSOS(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
     // Check if the row and column are within the valid range
     if (!isRowValid(row, boardSize) || !isColumnValid(column, boardSize)) {
         // Handle out-of-range error if needed
@@ -26,9 +26,8 @@ bool GameMode::checkForSOS(int row, int column, QTableWidget* gameBoard, int boa
     if (isColumnValid(column + 2, boardSize)) {
         QString horizontalPattern = "";
         for (int i = column; i <= column + 2; ++i) {
-            QTableWidgetItem* item = gameBoard->item(row, i);
-            if (item) {
-                horizontalPattern += item->text();
+            if (gameBoard[row][i]) {
+                horizontalPattern += gameBoard[row][i]->text();
             }
         }
         if (horizontalPattern == sosPattern) {
@@ -42,10 +41,8 @@ bool GameMode::checkForSOS(int row, int column, QTableWidget* gameBoard, int boa
     if (isRowValid(row + 2, boardSize)) {
         QString verticalPattern = "";
         for (int i = row; i <= row + 2; ++i) {
-            QTableWidgetItem* item = gameBoard->item(i, column);
-            if (item) {
-                verticalPattern += item->text();
-                qDebug() << "horizontalPattern: " << verticalPattern;
+            if (gameBoard[i][column]) {
+                verticalPattern += gameBoard[i][column]->text();
             }
         }
         if (verticalPattern == sosPattern) {
@@ -59,9 +56,8 @@ bool GameMode::checkForSOS(int row, int column, QTableWidget* gameBoard, int boa
     if (isRowValid(row + 2, boardSize) && isColumnValid(column + 2, boardSize)) {
         QString diagonalPattern = "";
         for (int i = 0; i < 3; ++i) {
-            QTableWidgetItem* item = gameBoard->item(row + i, column + i);
-            if (item) {
-                diagonalPattern += item->text();
+            if (gameBoard[row + i][column + i]) {
+                diagonalPattern += gameBoard[row + i][column + i]->text();
             }
         }
         if (diagonalPattern == sosPattern) {
@@ -75,9 +71,8 @@ bool GameMode::checkForSOS(int row, int column, QTableWidget* gameBoard, int boa
     if (isRowValid(row + 2, boardSize) && isColumnValid(column - 2, boardSize)) {
         QString diagonalPattern = "";
         for (int i = 0; i < 3; ++i) {
-            QTableWidgetItem* item = gameBoard->item(row + i, column - i);
-            if (item) {
-                diagonalPattern += item->text();
+            if (gameBoard[row + i][column - i]) {
+                diagonalPattern += gameBoard[row + i][column - i]->text();
             }
         }
         if (diagonalPattern == sosPattern) {
@@ -91,9 +86,8 @@ bool GameMode::checkForSOS(int row, int column, QTableWidget* gameBoard, int boa
     if (isRowValid(row - 2, boardSize) && isColumnValid(column + 2, boardSize)) {
         QString diagonalPattern = "";
         for (int i = 0; i < 3; ++i) {
-            QTableWidgetItem* item = gameBoard->item(row - i, column + i);
-            if (item) {
-                diagonalPattern += item->text();
+            if (gameBoard[row - i][column + i]) {
+                diagonalPattern += gameBoard[row - i][column + i]->text();
             }
         }
         if (diagonalPattern == sosPattern) {
@@ -107,9 +101,8 @@ bool GameMode::checkForSOS(int row, int column, QTableWidget* gameBoard, int boa
     if (isRowValid(row - 2, boardSize) && isColumnValid(column - 2, boardSize)) {
         QString diagonalPattern = "";
         for (int i = 0; i < 3; ++i) {
-            QTableWidgetItem* item = gameBoard->item(row - i, column - i);
-            if (item) {
-                diagonalPattern += item->text();
+            if (gameBoard[row - i][column - i]) {
+                diagonalPattern += gameBoard[row - i][column - i]->text();
             }
         }
         if (diagonalPattern == sosPattern) {

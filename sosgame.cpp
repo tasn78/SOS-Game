@@ -26,7 +26,7 @@ void SOSGame::on_BoardSizeSlider_valueChanged(int value)
 void SOSGame::on_StartButton_clicked()
 {
     //Check and set game mode based on Simple or General game mode radio buttons
-    SimpleGame game;
+    SimpleGame SGame;
     if (GameType != 'S' && GameType != 'G'){
         QMessageBox::critical(this, "You must choose a Simple or General game mode", "");
     }
@@ -49,17 +49,19 @@ void SOSGame::createGameBoard(int boardSize) {
     ui->SOSGameBoard->setColumnCount(boardSize);
     ui->SOSGameBoard->setBaseSize(500, 500);
 
-
+    std::vector<std::vector<QPushButton*>> vectorBoard(boardSize, std::vector<QPushButton*>(boardSize, nullptr));
+    vectorBoard.clear();
 
     // Iterate to create the game board based on board size chosen
-    for (int i = 0; i < boardSize; i++){
-        for (int j= 0; j < boardSize; j++){
+    for (int i = 0; i < boardSize; i++){ // i = row
+        for (int j= 0; j < boardSize; j++){ // j = column
             //ui->SOSGameBoard->setItem(i,j, new QTableWidgetItem());
             QPushButton* button = new QPushButton();
             button->setText("");
             button->setBaseSize(500 / boardSize, 500 / boardSize);
             //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             ui->SOSGameBoard->setCellWidget(i,j,(QWidget*)button);
+            vectorBoard[i][j] = button;
             //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             connect(button, SIGNAL(clicked()), this, SLOT(gameBoardButtonClick()));
             ui->SOSGameBoard->setColumnWidth(i, 340 / boardSize);
@@ -67,94 +69,69 @@ void SOSGame::createGameBoard(int boardSize) {
 
         }
     }
-
-    //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    //ui->SOSGameBoard->setMaximumWidth(boardSize * 30);
-
-
+    setGameState(boardSize, vectorBoard);
 }
 
-//  Previously used code for the gameboard, not currently used
-/*  Creates a gameboard using QGridTable
-std::vector<Cell> SOSGame::buildCellButtons(int boardSize) {
-        // Create a 2D vector to hold the Cell objects
-        std::vector<Cell> gameBoard;
-        gameBoard.reserve(boardSize * boardSize);
 
-        // Clear the existing buttons from the layout (if any)
-        QLayoutItem* item;
-        while ((item = ui->GameBoard->takeAt(0)) != nullptr) {
-            delete item->widget();
-            delete item;
-        }
-
-        // Initialize the 2D vector with empty Cell objects
-
-        // Create buttons and populate the grid layout
-        for (int row = 0; row < boardSize; ++row) {
-            for (int col = 0; col < boardSize; ++col) {
-                QPushButton* button = new QPushButton(this);
-                button->setProperty("cell", true); // You can set text or properties here
-                ui->GameBoard->addWidget(button, row, col);
-
-                // Connection for click signal
-                connect(button, &QPushButton::clicked, this, &Player::makeMove());
-
-                // Create and store the Cell object
-                gameBoard.emplace_back(button, row, col);
-            }
-        }
-
-        return gameBoard;
+// Resizes vector and sets gameboard to vector of vectors of pushbuttons
+void SOSGame::setGameState(int boardSize, std::vector<std::vector<QPushButton*>> board){
+    vectorBoard.resize(boardSize, std::vector<QPushButton*> (boardSize, nullptr));
+    vectorBoard = board;
 }
-*/
 
 
+// Gets the vector gameboard state
+std::vector<std::vector<QPushButton*>> SOSGame::getGameState(){
+    return vectorBoard;
+}
 
+
+//  Sets game type to simple on button click and start
 void SOSGame::on_SimpleGameButton_clicked()
 {
     setGameType('S');
 }
 
 
-
+//  Sets game type to general on button click and start
 void SOSGame::on_GeneralGameButton_clicked()
 {
     setGameType('G');
 }
 
 
-
+//  Sets game type to simple or general
 void SOSGame::setGameType(char gameType)
 {
     GameType = gameType;
 }
 
 
-
+//  Gets game type
 char SOSGame::getGameType()
 {
     return GameType;
 }
 
 
-
+// Sets player move on button click
 void SOSGame::gameBoardButtonClick(){
     QPushButton* clickedButton = qobject_cast<QPushButton*>(sender()); // Used from ChatGPT
+    std::vector<std::vector<QPushButton*>> board;
+    board.resize(boardSize, std::vector<QPushButton*> (boardSize, nullptr));
+    board = getGameState();
 
     if (!clickedButton) {  // Handles the case where user does not click a QPushbutton
         return;
     }
-    else{
-        int row = ui->SOSGameBoard->row(clickedButton); // Get the row of the clicked button
-        int column = ui->SOSGameBoard->column(clickedButton); // Get the column of the clicked button
-    }
+
+    QModelIndex buttonIndex = ui->SOSGameBoard->indexAt(clickedButton->pos());
+    int row = buttonIndex.row(); // Get the row of the clicked button
+    int column = buttonIndex.column(); // Get the column of the clicked button
 
     int playerTurn = GamePlayers.getPlayerTurn();
 
     char GameMode = getGameType();
-
-    QTableWidgetItem* item = ui->SOSGameBoard->item(row, column);
 
 
     if (GameMode == 'S'){
@@ -162,10 +139,10 @@ void SOSGame::gameBoardButtonClick(){
         if (playerTurn == 1){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer1Move());
-            item->setText(clickedButton->text());
+            //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: blue;");
                 if (clickedButton->text() != ""){
-                    isGameOver(row, column, ui->SOSGameBoard, boardSize);
+                    isGameOver(row, column, board, boardSize);
                     GamePlayers.switchPlayerTurn();
                 }
             }
@@ -175,10 +152,10 @@ void SOSGame::gameBoardButtonClick(){
         else if (playerTurn == 2){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer2Move());
-            item->setText(clickedButton->text());;
+            //item->setText(clickedButton->text());;
             clickedButton->setStyleSheet("color: red;");
                 if (clickedButton->text() != ""){
-                    isGameOver(row, column, ui->SOSGameBoard, boardSize);
+                    isGameOver(row, column, board, boardSize);
                     GamePlayers.switchPlayerTurn();
                 }
             }
@@ -193,7 +170,7 @@ void SOSGame::gameBoardButtonClick(){
         if (playerTurn == 1){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer1Move());
-            item->setText(clickedButton->text());
+            //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: blue;");
                 if (clickedButton->text() != ""){
                     GamePlayers.switchPlayerTurn();
@@ -205,7 +182,7 @@ void SOSGame::gameBoardButtonClick(){
         else if (playerTurn == 2){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer2Move());
-            item->setText(clickedButton->text());
+            //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: red;");
                 if (clickedButton->text() != ""){
                 GamePlayers.switchPlayerTurn();
@@ -224,7 +201,7 @@ void SOSGame::gameBoardButtonClick(){
 }
 
 
-bool SOSGame::isGameOver(int row, int column, QTableWidget* gameBoard, int boardSize) {
+bool SOSGame::isGameOver(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
     // Check for SOS
     SimpleGame game;
     if (game.checkForSOS(row, column, gameBoard, boardSize)) {
@@ -279,4 +256,3 @@ void SOSGame::on_pushButton_clicked()
 {
     exit(1);
 }
-

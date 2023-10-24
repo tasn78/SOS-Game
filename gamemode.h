@@ -16,13 +16,13 @@ public:
     ~GameMode();
 
     // Checks for SOS on GameBoard
-    bool checkForSOS(int row, int column, QTableWidget* gameBoard, int boardSize);
+    bool checkForSOS(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize);
 
     // Checks for a win or draw
-    virtual bool checkForWin(QTableWidget* gameBoard) = 0;
+    virtual bool checkForWin(std::vector<std::vector<QPushButton*>>& gameBoard) = 0;
 
     // Checks if GameBoard is full
-    virtual bool checkGameCompletion(QTableWidget* gameBoard) = 0;
+    virtual bool checkGameCompletion(std::vector<std::vector<QPushButton*>>& gameBoard) = 0;
 
     // Checks if rows and columns are valid when checking for SOS
     bool isRowValid(int row, int boardSize);
