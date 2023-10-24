@@ -19,97 +19,26 @@ bool GameMode::checkForSOS(int row, int column, std::vector<std::vector<QPushBut
         return false;
     }
 
-    // String to compare from the buttons +2 and -2 from the button clicked
     QString sosPattern = "SOS";
 
-    // Check for SOS in horizontal direction (right)
-    if (isColumnValid(column + 2, boardSize)) {
-        QString horizontalPattern = "";
-        for (int i = column; i <= column + 2; ++i) {
-            if (gameBoard[row][i]) {
-                horizontalPattern += gameBoard[row][i]->text();
-            }
-        }
-        if (horizontalPattern == sosPattern) {
-            qDebug() << "sosPattern: " << sosPattern;
-            qDebug() << "horizontalPattern: " << horizontalPattern;
-            return true;
-        }
-    }
-
-    // Check for SOS in vertical direction (down)
-    if (isRowValid(row + 2, boardSize)) {
-        QString verticalPattern = "";
-        for (int i = row; i <= row + 2; ++i) {
-            if (gameBoard[i][column]) {
-                verticalPattern += gameBoard[i][column]->text();
-            }
-        }
-        if (verticalPattern == sosPattern) {
-            qDebug() << "sosPattern: " << sosPattern;
-            qDebug() << "verticalPattern: " << verticalPattern;
-            return true;
-        }
-    }
-
-    // Check for SOS in diagonal direction (down-right)
-    if (isRowValid(row + 2, boardSize) && isColumnValid(column + 2, boardSize)) {
-        QString diagonalPattern = "";
+    // Used ChatGPT to reduce my lines of code to a lambda function to check for SOS in a specific direction
+    auto checkDirection = [&](int dr, int dc) -> bool {
+        QString pattern = "";
         for (int i = 0; i < 3; ++i) {
-            if (gameBoard[row + i][column + i]) {
-                diagonalPattern += gameBoard[row + i][column + i]->text();
-            }
-        }
-        if (diagonalPattern == sosPattern) {
-            qDebug() << "sosPattern: " << sosPattern;
-            qDebug() << "diagonalPattern: " << diagonalPattern;
-            return true;
-        }
-    }
+            int r = row + dr * i;
+            int c = column + dc * i;
 
-    // Check for SOS in diagonal direction (down-left)
-    if (isRowValid(row + 2, boardSize) && isColumnValid(column - 2, boardSize)) {
-        QString diagonalPattern = "";
-        for (int i = 0; i < 3; ++i) {
-            if (gameBoard[row + i][column - i]) {
-                diagonalPattern += gameBoard[row + i][column - i]->text();
+            if (isRowValid(r, boardSize) && isColumnValid(c, boardSize) && gameBoard[r][c]) {
+                pattern += gameBoard[r][c]->text();
             }
         }
-        if (diagonalPattern == sosPattern) {
-            qDebug() << "sosPattern: " << sosPattern;
-            qDebug() << "diagonalPattern: " << diagonalPattern;
-            return true;
-        }
-    }
+        return pattern == sosPattern || (pattern == "SOS" && gameBoard[row + dr][column + dc]->text() == "S");
+    };
 
-    // Check for SOS in diagonal direction (up-right)
-    if (isRowValid(row - 2, boardSize) && isColumnValid(column + 2, boardSize)) {
-        QString diagonalPattern = "";
-        for (int i = 0; i < 3; ++i) {
-            if (gameBoard[row - i][column + i]) {
-                diagonalPattern += gameBoard[row - i][column + i]->text();
-            }
-        }
-        if (diagonalPattern == sosPattern) {
-            qDebug() << "sosPattern: " << sosPattern;
-            qDebug() << "diagonalPattern: " << diagonalPattern;
-            return true;
-        }
-    }
-
-    // Check for SOS in diagonal direction (up-left)
-    if (isRowValid(row - 2, boardSize) && isColumnValid(column - 2, boardSize)) {
-        QString diagonalPattern = "";
-        for (int i = 0; i < 3; ++i) {
-            if (gameBoard[row - i][column - i]) {
-                diagonalPattern += gameBoard[row - i][column - i]->text();
-            }
-        }
-        if (diagonalPattern == sosPattern) {
-            qDebug() << "sosPattern: " << sosPattern;
-            qDebug() << "diagonalPattern: " << diagonalPattern;
-            return true;
-        }
+    // Check all eight possible directions for SOS
+    if (checkDirection(0, 1) || checkDirection(0, -1) || checkDirection(1, 0) || checkDirection(-1, 0) ||
+        checkDirection(-1, 1) || checkDirection(-1, -1) || checkDirection(1, 1) || checkDirection(1, -1)) {
+        return true;
     }
 
     return false;

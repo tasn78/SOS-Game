@@ -50,26 +50,35 @@ void SOSGame::createGameBoard(int boardSize) {
     ui->SOSGameBoard->setBaseSize(500, 500);
 
     std::vector<std::vector<QPushButton*>> vectorBoard(boardSize, std::vector<QPushButton*>(boardSize, nullptr));
-    vectorBoard.clear();
 
     // Iterate to create the game board based on board size chosen
     for (int i = 0; i < boardSize; i++){ // i = row
         for (int j= 0; j < boardSize; j++){ // j = column
             //ui->SOSGameBoard->setItem(i,j, new QTableWidgetItem());
             QPushButton* button = new QPushButton();
+            //button->setFixedSize(size());
+            //button->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
             button->setText("");
-            button->setBaseSize(500 / boardSize, 500 / boardSize);
+            //button->setBaseSize(500 / boardSize, 500 / boardSize);
             //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             ui->SOSGameBoard->setCellWidget(i,j,(QWidget*)button);
             vectorBoard[i][j] = button;
             //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             connect(button, SIGNAL(clicked()), this, SLOT(gameBoardButtonClick()));
-            ui->SOSGameBoard->setColumnWidth(i, 340 / boardSize);
-            ui->SOSGameBoard->setRowHeight(j, 338 / boardSize);
+            ui->SOSGameBoard->setColumnWidth(i, 440 / boardSize);
+            ui->SOSGameBoard->setRowHeight(j, 438 / boardSize);
 
         }
     }
     setGameState(boardSize, vectorBoard);
+
+    for (int i = 0; i < boardSize; i++){ // i = row
+        for (int j= 0; j < boardSize; j++){ // j = column
+            ui->SOSGameBoard->cellWidget(i,j)->setFixedSize(size());
+            ui->SOSGameBoard->cellWidget(i,j)->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+
+        }
+    }
 }
 
 
@@ -173,6 +182,7 @@ void SOSGame::gameBoardButtonClick(){
             //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: blue;");
                 if (clickedButton->text() != ""){
+                    isGameOver(row, column, board, boardSize);
                     GamePlayers.switchPlayerTurn();
                 }
             }
@@ -185,7 +195,8 @@ void SOSGame::gameBoardButtonClick(){
             //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: red;");
                 if (clickedButton->text() != ""){
-                GamePlayers.switchPlayerTurn();
+                    isGameOver(row, column, board, boardSize);
+                    GamePlayers.switchPlayerTurn();
                 }
             }
         }
