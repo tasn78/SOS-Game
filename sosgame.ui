@@ -2,34 +2,32 @@
 <ui version="4.0">
  <class>SOSGame</class>
  <widget class="QMainWindow" name="SOSGame">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>675</width>
-    <height>472</height>
-   </rect>
-  </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>200</width>
+    <height>200</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>SOSGame</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
    <property name="minimumSize">
     <size>
-     <width>675</width>
-     <height>450</height>
+     <width>50</width>
+     <height>50</height>
     </size>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -213,7 +211,7 @@
       <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QTableWidget" name="SOSGameBoard">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -364,8 +362,8 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="GameTypeButtonGroup"/>
   <buttongroup name="Player2MoveButtonGroup"/>
+  <buttongroup name="GameTypeButtonGroup"/>
   <buttongroup name="Player1MoveButtonGroup"/>
  </buttongroups>
 </ui>

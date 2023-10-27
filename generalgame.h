@@ -6,14 +6,17 @@
 class GeneralGame : public GameMode
 {
 public:
-    GeneralGame();
-    ~GeneralGame();
+    GeneralGame() {}
+    ~GeneralGame() {}
 
     // Checks for win
-    //bool checkForWin(QTableWidget* gameBoard) override;
+    bool checkForWin(std::vector<std::vector<QPushButton*>> gameBoard);
 
-    // Checks if GameBoard is full, resulting in game win or draw
-    //bool checkGameCompletion(QTableWidget* gameBoard) override;
+    // Main function that checks SOS in all directions
+    bool checkForSOS(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize);
+
+    // Adds all created SOS's created and returns new playerScore
+    void addTotalCreatedSOSCount(int playerScore, int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize);
 };
 
 #endif // GENERALGAME_H

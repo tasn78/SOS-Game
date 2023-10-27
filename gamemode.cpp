@@ -1,48 +1,185 @@
 #include "gamemode.h"
 #include <QMessageBox>
 #include <QDebug>
-#include "sosgame.h"
-#include "ui_sosgame.h"
+
 
 GameMode::GameMode(){
+
 }
 
 GameMode::~GameMode(){
 
 }
 
-//  Checks all directions for SOS from button click on game board
-bool GameMode::checkForSOS(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
-    // Check if the row and column are within the valid range
-    if (!isRowValid(row, boardSize) || !isColumnValid(column, boardSize)) {
-        // Handle out-of-range error if needed
+// Checks for SOS in the right direction
+bool GameMode::checkSOSRight(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isColumnValid(column + 2, boardSize)) {
         return false;
     }
 
+    QString pattern = "";
+    for (int i = column; i <= column + 2; ++i) {
+        if (gameBoard[row][i]) {
+            pattern += gameBoard[row][i]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+// Checks for SOS in the left direction
+bool GameMode::checkSOSLeft(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isColumnValid(column - 2, boardSize)) {
+        return false;
+    }
+
+    QString pattern = "";
+    for (int i = column; i >= column - 2; --i) {
+        if (gameBoard[row][i]) {
+            pattern += gameBoard[row][i]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+// Checks for SOS in the down direction
+bool GameMode::checkSOSDown(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isRowValid(row + 2, boardSize)) {
+        return false;
+    }
+
+    QString pattern = "";
+    for (int i = row; i <= row + 2; ++i) {
+        if (gameBoard[i][column]) {
+            pattern += gameBoard[i][column]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+// Checks for SOS in the up direction
+bool GameMode::checkSOSUp(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isRowValid(row - 2, boardSize)) {
+        return false;
+    }
+
+    QString pattern = "";
+    for (int i = row; i >= row - 2; --i) {
+        if (gameBoard[i][column]) {
+            pattern += gameBoard[i][column]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+// Checks for SOS in the up-right direction
+bool GameMode::checkSOSUpRight(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isRowValid(row - 2, boardSize) || !isColumnValid(column + 2, boardSize)) {
+        return false;
+    }
+
+    QString pattern = "";
+    for (int i = 0; i < 3; ++i) {
+        if (gameBoard[row - i][column + i]) {
+            pattern += gameBoard[row - i][column + i]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+//  Checks for SOS up-left direction
+bool GameMode::checkSOSUpLeft(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isRowValid(row - 2, boardSize) || !isColumnValid(column - 2, boardSize)) {
+        return false;
+    }
+
+    QString pattern = "";
+    for (int i = 0; i < 3; ++i) {
+        if (gameBoard[row - i][column - i]) {
+            pattern += gameBoard[row - i][column - i]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+// Checks for SOS in the down-right direction
+bool GameMode::checkSOSDownRight(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isRowValid(row + 2, boardSize) || !isColumnValid(column + 2, boardSize)) {
+        return false;
+    }
+
+    QString pattern = "";
+    for (int i = 0; i < 3; ++i) {
+        if (gameBoard[row + i][column + i]) {
+            pattern += gameBoard[row + i][column + i]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+// Check for SOS in the down-left direction
+bool GameMode::checkSOSDownLeft(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+    if (!isRowValid(row + 2, boardSize) || !isColumnValid(column - 2, boardSize)) {
+        return false;
+    }
+
+    QString pattern = "";
+    for (int i = 0; i < 3; ++i) {
+        if (gameBoard[row + i][column - i]) {
+            pattern += gameBoard[row + i][column - i]->text();
+        }
+    }
+
+    return pattern == "SOS";
+}
+
+// Check for when 'O' is placed in the center of a 3x3 square to form "SOS" - used chatGPT for looping algorithms
+bool GameMode::checkSOSWithOInCenter(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
     QString sosPattern = "SOS";
 
-    // Used ChatGPT to reduce my lines of code to a lambda function to check for SOS in a specific direction
-    auto checkDirection = [&](int dr, int dc) -> bool {
-        QString pattern = "";
-        for (int i = 0; i < 3; ++i) {
-            int r = row + dr * i;
-            int c = column + dc * i;
+    // Check in all eight directions
+    for (int dr = -1; dr <= 1; ++dr) {
+        for (int dc = -1; dc <= 1; ++dc) {
+            QString pattern = "";
 
-            if (isRowValid(r, boardSize) && isColumnValid(c, boardSize) && gameBoard[r][c]) {
-                pattern += gameBoard[r][c]->text();
+            for (int i = -1; i <= 1; ++i) {
+                int r = row + dr * i;
+                int c = column + dc * i;
+
+                if (isRowValid(r, boardSize) && isColumnValid(c, boardSize) && gameBoard[r][c]) {
+                    pattern += gameBoard[r][c]->text();
+                }
+            }
+
+            if (pattern == sosPattern) {
+                return true;
             }
         }
-        return pattern == sosPattern || (pattern == "SOS" && gameBoard[row + dr][column + dc]->text() == "S");
-    };
-
-    // Check all eight possible directions for SOS
-    if (checkDirection(0, 1) || checkDirection(0, -1) || checkDirection(1, 0) || checkDirection(-1, 0) ||
-        checkDirection(-1, 1) || checkDirection(-1, -1) || checkDirection(1, 1) || checkDirection(1, -1)) {
-        return true;
     }
 
     return false;
 }
+
+
+
+// Checks for draw / full gameboard
+bool GameMode::checkGameCompletion(std::vector<std::vector<QPushButton*>>& gameBoard) {
+    for (const auto& row : gameBoard) {
+        for (QPushButton* button : row) {
+            if (button && (button->text() != "S" && button->text() != "O")) {
+                return false; // A button contains neither 'S' nor 'O'
+            }
+        }
+    }
+    return true; // All buttons contain 'S' or 'O'
+}
+
 
 // Checks if row is valid for iterating through the SOSGameBoard checking for SOS
 bool GameMode::isRowValid(int row, int boardSize) {
@@ -94,3 +231,4 @@ void GameMode::drawLineThroughSOS(int row, int column, int direction, int player
     // Draw the line
     painter.drawLine(startX, startY, endX, endY);
 }
+

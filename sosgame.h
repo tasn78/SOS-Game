@@ -7,6 +7,7 @@
 #include "player.h"
 #include "gamemode.h"
 #include "simplegame.h"
+#include "generalgame.h"
 
 #include <QMainWindow>
 #include <cstddef>
@@ -39,14 +40,16 @@ public:
     void createGameBoard(int boardSize);
 
 
-    void setGameState(int boardSize, std::vector<std::vector<QPushButton*>>);
+    void setGameState(int boardSize, std::vector<std::vector<QPushButton*>>&);
     std::vector<std::vector<QPushButton*>> getGameState();
 
     void setGameType(char);
     char getGameType();
 
-    bool isGameOver(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize);
+    bool isSimpleGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize);
+    bool isGeneralGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize);
 
+    void printVectorBoard(const std::vector<std::vector<QPushButton*>>& vectorBoard);
 
 
 private slots:
@@ -79,6 +82,8 @@ private:
     char GameType;
     bool GameOver;
     Players GamePlayers;
+    int player1Score;
+    int player2Score;
 };
 
 

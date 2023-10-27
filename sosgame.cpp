@@ -19,6 +19,7 @@ SOSGame::~SOSGame()
 void SOSGame::on_BoardSizeSlider_valueChanged(int value)
 {
     ui->BoardSizeOutput->setText(QString::number(value));
+    boardSize = value;
 }
 
 
@@ -44,46 +45,43 @@ void SOSGame::on_StartButton_clicked()
 void SOSGame::createGameBoard(int boardSize) {
     GamePlayers.setPlayerTurn(1);
     ui->SOSGameBoard->clearContents();
-
     ui->SOSGameBoard->setRowCount(boardSize);
     ui->SOSGameBoard->setColumnCount(boardSize);
-    ui->SOSGameBoard->setBaseSize(500, 500);
 
     std::vector<std::vector<QPushButton*>> vectorBoard(boardSize, std::vector<QPushButton*>(boardSize, nullptr));
 
-    // Iterate to create the game board based on board size chosen
-    for (int i = 0; i < boardSize; i++){ // i = row
-        for (int j= 0; j < boardSize; j++){ // j = column
-            //ui->SOSGameBoard->setItem(i,j, new QTableWidgetItem());
-            QPushButton* button = new QPushButton();
-            //button->setFixedSize(size());
-            //button->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
-            button->setText("");
-            //button->setBaseSize(500 / boardSize, 500 / boardSize);
-            //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-            ui->SOSGameBoard->setCellWidget(i,j,(QWidget*)button);
-            vectorBoard[i][j] = button;
-            //ui->SOSGameBoard->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-            connect(button, SIGNAL(clicked()), this, SLOT(gameBoardButtonClick()));
-            ui->SOSGameBoard->setColumnWidth(i, 440 / boardSize);
-            ui->SOSGameBoard->setRowHeight(j, 438 / boardSize);
+    // Calculate the size for each button
+    int buttonSize = 490 / boardSize;
 
+    // Iterate to create the game board based on board size chosen
+    for (int i = 0; i < boardSize; i++) { // row
+        for (int j = 0; j < boardSize; j++) { // column
+            QPushButton* button = new QPushButton();
+            button->setText("");
+            button->setFixedSize(buttonSize, buttonSize);
+            ui->SOSGameBoard->setCellWidget(i, j, button);
+            vectorBoard[i][j] = button;
+
+            connect(button, SIGNAL(clicked()), this, SLOT(gameBoardButtonClick()));
         }
     }
+
+    // Set size policies and stretch properties of gameboard
+    ui->SOSGameBoard->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->SOSGameBoard->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->SOSGameBoard->horizontalHeader()->setMinimumSectionSize(buttonSize);
+    ui->SOSGameBoard->verticalHeader()->setMinimumSectionSize(buttonSize);
+
     setGameState(boardSize, vectorBoard);
 
-    for (int i = 0; i < boardSize; i++){ // i = row
-        for (int j= 0; j < boardSize; j++){ // j = column
-            ui->SOSGameBoard->cellWidget(i,j)->setFixedSize(size());
-            ui->SOSGameBoard->cellWidget(i,j)->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+    ui->SOSGameBoard->resizeColumnsToContents();
+    ui->SOSGameBoard->resizeRowsToContents();
 
-        }
-    }
 }
 
 
 // Resizes vector and sets gameboard to vector of vectors of pushbuttons
-void SOSGame::setGameState(int boardSize, std::vector<std::vector<QPushButton*>> board){
+void SOSGame::setGameState(int boardSize, std::vector<std::vector<QPushButton*>>& board){
     vectorBoard.resize(boardSize, std::vector<QPushButton*> (boardSize, nullptr));
     vectorBoard = board;
 }
@@ -126,9 +124,6 @@ char SOSGame::getGameType()
 // Sets player move on button click
 void SOSGame::gameBoardButtonClick(){
     QPushButton* clickedButton = qobject_cast<QPushButton*>(sender()); // Used from ChatGPT
-    std::vector<std::vector<QPushButton*>> board;
-    board.resize(boardSize, std::vector<QPushButton*> (boardSize, nullptr));
-    board = getGameState();
 
     if (!clickedButton) {  // Handles the case where user does not click a QPushbutton
         return;
@@ -148,10 +143,9 @@ void SOSGame::gameBoardButtonClick(){
         if (playerTurn == 1){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer1Move());
-            //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: blue;");
                 if (clickedButton->text() != ""){
-                    isGameOver(row, column, board, boardSize);
+                    isSimpleGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
                 }
             }
@@ -161,10 +155,9 @@ void SOSGame::gameBoardButtonClick(){
         else if (playerTurn == 2){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer2Move());
-            //item->setText(clickedButton->text());;
             clickedButton->setStyleSheet("color: red;");
                 if (clickedButton->text() != ""){
-                    isGameOver(row, column, board, boardSize);
+                    isSimpleGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
                 }
             }
@@ -179,10 +172,9 @@ void SOSGame::gameBoardButtonClick(){
         if (playerTurn == 1){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer1Move());
-            //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: blue;");
                 if (clickedButton->text() != ""){
-                    isGameOver(row, column, board, boardSize);
+                    isGeneralGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
                 }
             }
@@ -192,10 +184,9 @@ void SOSGame::gameBoardButtonClick(){
         else if (playerTurn == 2){
             if (clickedButton->text()== ""){
             clickedButton->setText(GamePlayers.getPlayer2Move());
-            //item->setText(clickedButton->text());
             clickedButton->setStyleSheet("color: red;");
                 if (clickedButton->text() != ""){
-                    isGameOver(row, column, board, boardSize);
+                    isGeneralGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
                 }
             }
@@ -204,17 +195,16 @@ void SOSGame::gameBoardButtonClick(){
             QMessageBox::critical(this, "You must choose an S or O", "");
         }
     }
-
-
-
-    // Check if player 1 or 2 move created an SOS on click
-
 }
 
 
-bool SOSGame::isGameOver(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
+bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize) {
     // Check for SOS
     SimpleGame game;
+
+    if (game.checkGameCompletion(gameBoard)){
+        QMessageBox::information(this, "Game Over", "Game ends in a draw!");
+    }
     if (game.checkForSOS(row, column, gameBoard, boardSize)) {
         // Determine the winner based on the current player turn
         int playerTurn = GamePlayers.getPlayerTurn();
@@ -234,6 +224,29 @@ bool SOSGame::isGameOver(int row, int column, std::vector<std::vector<QPushButto
     return false; // The game is not over
 }
 
+
+bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize) {
+    // Check for SOS
+    GeneralGame game;
+
+    if (game.checkForSOS(row, column, gameBoard, boardSize)) {
+        // Determine the winner based on the current player turn
+        int playerTurn = GamePlayers.getPlayerTurn();
+        QString winner;
+        if (playerTurn == 1) {
+            winner = "Player 1";
+        } else if (playerTurn == 2) {
+            winner = "Player 2";
+        }
+
+        // Show a QMessageBox declaring the winner
+        QMessageBox::information(this, "Game Over", winner + " wins!");
+
+        return true; // The game is over
+    }
+
+    return false; // The game is not over
+}
 
 void SOSGame::on_player1_S_clicked()
 {
@@ -266,4 +279,18 @@ void SOSGame::on_player2_O_clicked()
 void SOSGame::on_pushButton_clicked()
 {
     exit(1);
+}
+
+void SOSGame::printVectorBoard(const std::vector<std::vector<QPushButton*>>& vectorBoard) {
+    for (const auto& row : vectorBoard) {
+        QString rowText;
+        for (const auto& button : row) {
+            if (button) {
+                rowText += button->text() + "";
+            } else {
+                rowText += "nullptr "; // Handle empty buttons
+            }
+        }
+        qDebug() << rowText;
+    }
 }
