@@ -323,7 +323,7 @@ TEST(GameModeTest, CheckGameCompletionNotFullBoard) {
 
 TEST(GameModeTest, CheckGameCompletionMixedBoard) {
     GameMode gameMode;
-    const int boardSize = 3; // Adjust as needed
+    const int boardSize = 3;
     std::vector<std::vector<std::string>> gameBoard(boardSize, std::vector<std::string>(boardSize, "O"));
 
     // The board is full with only 'O'
@@ -336,7 +336,7 @@ TEST(GameModeTest, CheckGameCompletionMixedBoard) {
 
 TEST(GeneralGameTest, CheckForSOSValid) {
     GeneralGame generalGame;
-    const int boardSize = 3; // Adjust as needed
+    const int boardSize = 3;
     std::vector<std::vector<std::string>> gameBoard(boardSize, std::vector<std::string>(boardSize, " "));
 
     // Set up a valid SOS pattern horizontally
@@ -350,7 +350,7 @@ TEST(GeneralGameTest, CheckForSOSValid) {
 
 TEST(GeneralGameTest, CheckForSOSInvalid) {
     GeneralGame generalGame;
-    const int boardSize = 3; // Adjust as needed
+    const int boardSize = 3;
     std::vector<std::vector<std::string>> gameBoard(boardSize, std::vector<std::string>(boardSize, " "));
 
     // No SOS pattern on the board
@@ -367,13 +367,13 @@ TEST(GeneralGameTest, CheckForSOSInvalid) {
 
 TEST(GeneralGameTest, AddTotalCreatedSOSCount) {
     GeneralGame generalGame;
-    const int boardSize = 3; // Adjust as needed
+    const int boardSize = 3;
     std::vector<std::vector<std::string>> gameBoard(boardSize, std::vector<std::string>(boardSize, " "));
 
-    // Initialize player score
+    // Set player score to 0
     int playerScore = 0;
 
-    // Set up a valid SOS pattern horizontally
+    // Set up a valid SOS
     gameBoard[1][0] = "S";
     gameBoard[1][1] = "O";
     gameBoard[1][2] = "S";

@@ -9,7 +9,7 @@ public:
     GeneralGame() {}
     ~GeneralGame() {}
 
-    // Checks for win
+    // Unused check for win, possible use for sudden death
     bool checkForWin(std::vector<std::vector<QPushButton*>> gameBoard) override;
 
     // Main function that checks SOS in all directions

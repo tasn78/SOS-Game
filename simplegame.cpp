@@ -1,5 +1,6 @@
 #include "simplegame.h"
 
+//  Unused checkForWin, possible use in sudden death
 bool SimpleGame::checkForWin(std::vector<std::vector<QPushButton*>> gameBoard){
     gameBoard;
     return true;

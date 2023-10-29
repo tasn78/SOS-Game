@@ -1,5 +1,6 @@
 #include "sosgame.h"
 
+// Constructor for UI
 SOSGame::SOSGame(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::SOSGame)
@@ -9,13 +10,14 @@ SOSGame::SOSGame(QWidget *parent)
 
 }
 
+// Deconstructor for UI
 SOSGame::~SOSGame()
 {
     delete ui;
 }
 
 
-
+// Slider allows player to choose between 3x3-10x10 board size
 void SOSGame::on_BoardSizeSlider_valueChanged(int value)
 {
     ui->BoardSizeOutput->setText(QString::number(value));
@@ -23,7 +25,7 @@ void SOSGame::on_BoardSizeSlider_valueChanged(int value)
 }
 
 
-
+// Starts game and creates board if gametype has been chosen, else message appears to choose one
 void SOSGame::on_StartButton_clicked()
 {
     //Check and set game mode based on Simple or General game mode radio buttons
@@ -35,13 +37,9 @@ void SOSGame::on_StartButton_clicked()
         int size = ui->BoardSizeSlider->value();
         createGameBoard(size);
     }
-
-
-    //std::vector<Cell> GameState = buildCellButtons(size); // Creates game board using QGridTable
-
 }
 
-
+// Creates game board UI and vector based on board size slider
 void SOSGame::createGameBoard(int boardSize) {
     GamePlayers.setPlayerTurn(1);
     ui->SOSGameBoard->clearContents();
@@ -123,7 +121,7 @@ char SOSGame::getGameType()
 }
 
 
-// Sets player move on button click
+// Sets player move on button click, player move on board checked based on game type for SOS, draw and game end
 void SOSGame::gameBoardButtonClick(){
     QPushButton* clickedButton = qobject_cast<QPushButton*>(sender()); // Used from ChatGPT
 
@@ -201,7 +199,7 @@ void SOSGame::gameBoardButtonClick(){
     }
 }
 
-
+//  Checks board to see if simple game is over by the board being completely filled or an SOS has been created
 bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize) {
     // Check for SOS
     SimpleGame game;
@@ -228,7 +226,7 @@ bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPus
     return false; // The game is not over
 }
 
-
+// Checks board to see if general game is over be board being completely full, player score increased for SOS's created
 bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize) {
     // Check for SOS
     GeneralGame game;
@@ -271,39 +269,37 @@ bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPu
     return false; // The game is not over
 }
 
+// Updates player 1 move to 'S'
 void SOSGame::on_player1_S_clicked()
 {
     GamePlayers.setPlayer1Move("S");
 }
 
-
-
+// Updates player 2 move to 'O'
 void SOSGame::on_player1_O_clicked()
 {
     GamePlayers.setPlayer1Move("O");
 }
 
-
-
+// Updates player 2 move to 'S'
 void SOSGame::on_player2_S_clicked()
 {
     GamePlayers.setPlayer2Move("S");
 }
 
-
-
-
+// Updates player 2 move to 'O'
 void SOSGame::on_player2_O_clicked()
 {
     GamePlayers.setPlayer2Move("O");
 }
 
-
+// Exit button
 void SOSGame::on_pushButton_clicked()
 {
     exit(1);
 }
 
+// Prints vector in console for testing and visual look of board
 void SOSGame::printVectorBoard(const std::vector<std::vector<QPushButton*>>& vectorBoard) {
     for (const auto& row : vectorBoard) {
         QString rowText;
@@ -314,6 +310,5 @@ void SOSGame::printVectorBoard(const std::vector<std::vector<QPushButton*>>& vec
                 rowText += "nullptr "; // Handle empty buttons
             }
         }
-        qDebug() << rowText;
     }
 }

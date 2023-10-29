@@ -36,42 +36,55 @@ public:
     SOSGame(QWidget *parent = nullptr);
     ~SOSGame();
 
-    //std::vector<Cell> buildCellButtons(int boardSize);
+    // Creates the UI game board based on board size slider, creates vector for comparisons
     void createGameBoard(int boardSize);
 
-
+    // Getter/Setter for the game board
     void setGameState(int boardSize, std::vector<std::vector<QPushButton*>>&);
     std::vector<std::vector<QPushButton*>> getGameState();
 
+    // Getter/Setter for GameType (Simple or General)
     void setGameType(char);
     char getGameType();
 
+    //  Checks board to see if simple game is over by the board being completely filled or an SOS has been created
     bool isSimpleGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize);
     bool isGeneralGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize);
 
+    // Prints vector for testing/visual purposes
     void printVectorBoard(const std::vector<std::vector<QPushButton*>>& vectorBoard);
 
 
 private slots:
 
+    // Slider to choose board size
     void on_BoardSizeSlider_valueChanged(int value);
 
+    // Start button
     void on_StartButton_clicked();
 
+    // Simple game radio button
     void on_SimpleGameButton_clicked();
 
+    // General game radio button
     void on_GeneralGameButton_clicked();
 
+    // Button on board click action
     void gameBoardButtonClick();
 
+    // Player 1 'S' radio button
     void on_player1_S_clicked();
 
+    // Player 1 'O' radio button
     void on_player1_O_clicked();
 
+    // Player 2 'S' radio button
     void on_player2_S_clicked();
 
+    // Player 2 'O' radio button
     void on_player2_O_clicked();
 
+    // Exit button
     void on_pushButton_clicked();
 
 

@@ -11,7 +11,7 @@ GameMode::~GameMode(){
 
 }
 
-// Checks for SOS in the right direction
+// Checks for SOS in the right direction of player move
 bool GameMode::checkSOSRight(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
     if (!isColumnValid(column + 2, boardSize)) {
         return false;
@@ -27,7 +27,7 @@ bool GameMode::checkSOSRight(int row, int column, std::vector<std::vector<QPushB
     return pattern == "SOS";
 }
 
-// Checks for SOS in the left direction
+// Checks for SOS in the left direction of player move
 bool GameMode::checkSOSLeft(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
     if (!isColumnValid(column - 2, boardSize)) {
         return false;
@@ -43,7 +43,7 @@ bool GameMode::checkSOSLeft(int row, int column, std::vector<std::vector<QPushBu
     return pattern == "SOS";
 }
 
-// Checks for SOS in the down direction
+// Checks for SOS in the down direction of player move
 bool GameMode::checkSOSDown(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
     if (!isRowValid(row + 2, boardSize)) {
         return false;
