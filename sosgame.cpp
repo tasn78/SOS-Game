@@ -228,19 +228,33 @@ bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPus
 bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize) {
     // Check for SOS
     GeneralGame game;
+    int playerTurn = GamePlayers.getPlayerTurn();
 
     if (game.checkForSOS(row, column, gameBoard, boardSize)) {
         // Determine the winner based on the current player turn
-        int playerTurn = GamePlayers.getPlayerTurn();
+        if (playerTurn == 1){
+            game.addTotalCreatedSOSCount(player1Score, row, column, gameBoard, boardSize);
+            ui->player1Score->setText(QString::number(player1Score));
+        }
+        else if (playerTurn == 2){
+            game.addTotalCreatedSOSCount(player2Score, row, column, gameBoard, boardSize);
+            ui->player2Score->setText(QString::number(player2Score));
+        }
+    }
+    if (game.checkGameCompletion(gameBoard)){
         QString winner;
-        if (playerTurn == 1) {
-            winner = "Player 1";
-        } else if (playerTurn == 2) {
-            winner = "Player 2";
+        if (player1Score > player2Score) {
+            winner = "Player 1 wins!";
+        }
+        else if (player1Score < player2Score) {
+            winner = "Player 2 wins!";
+        }
+        else{
+            winner = "Game is a draw!";
         }
 
         // Show a QMessageBox declaring the winner
-        QMessageBox::information(this, "Game Over", winner + " wins!");
+        QMessageBox::information(this, "Game Over", winner);
 
         return true; // The game is over
     }

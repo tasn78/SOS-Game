@@ -10,13 +10,13 @@ public:
     ~GeneralGame() {}
 
     // Checks for win
-    bool checkForWin(std::vector<std::vector<QPushButton*>> gameBoard);
+    bool checkForWin(std::vector<std::vector<QPushButton*>> gameBoard) override;
 
     // Main function that checks SOS in all directions
-    bool checkForSOS(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize);
+    bool checkForSOS(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) override;
 
     // Adds all created SOS's created and returns new playerScore
-    void addTotalCreatedSOSCount(int playerScore, int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize);
+    void addTotalCreatedSOSCount(int& playerScore, int row, int column, std::vector<std::vector<QPushButton*>> gameBoard, int boardSize);
 };
 
 #endif // GENERALGAME_H

@@ -82,8 +82,8 @@ private:
     char GameType;
     bool GameOver;
     Players GamePlayers;
-    int player1Score;
-    int player2Score;
+    int player1Score = 0;
+    int player2Score = 0;
 };
 
 
