@@ -7,9 +7,7 @@ bool SimpleGame::checkForWin(std::vector<std::vector<QPushButton*>> gameBoard){
 
 // Main function that checks SOS in all directions
 bool SimpleGame::checkForSOS(int row, int column, std::vector<std::vector<QPushButton*>>& gameBoard, int boardSize) {
-    qDebug() << "boardsize " << boardSize;
-    qDebug() << "row " << row;
-    qDebug() << "column " << column;
+
     return checkSOSRight(row, column, gameBoard, boardSize) ||
            checkSOSLeft(row, column, gameBoard, boardSize) ||
            checkSOSDown(row, column, gameBoard, boardSize) ||

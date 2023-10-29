@@ -77,6 +77,8 @@ void SOSGame::createGameBoard(int boardSize) {
     ui->SOSGameBoard->resizeColumnsToContents();
     ui->SOSGameBoard->resizeRowsToContents();
 
+    ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+
 }
 
 
@@ -137,7 +139,6 @@ void SOSGame::gameBoardButtonClick(){
 
     char GameMode = getGameType();
 
-
     if (GameMode == 'S'){
         //  Sets player 1 move to S or O as blue text
         if (playerTurn == 1){
@@ -147,6 +148,8 @@ void SOSGame::gameBoardButtonClick(){
                 if (clickedButton->text() != ""){
                     isSimpleGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
+                    ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+                    ;
                 }
             }
         }
@@ -159,6 +162,7 @@ void SOSGame::gameBoardButtonClick(){
                 if (clickedButton->text() != ""){
                     isSimpleGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
+                    ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
                 }
             }
         }
@@ -175,7 +179,7 @@ void SOSGame::gameBoardButtonClick(){
             clickedButton->setStyleSheet("color: blue;");
                 if (clickedButton->text() != ""){
                     isGeneralGameOver(row, column, vectorBoard, boardSize);
-                    GamePlayers.switchPlayerTurn();
+                    ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
                 }
             }
         }
@@ -187,7 +191,7 @@ void SOSGame::gameBoardButtonClick(){
             clickedButton->setStyleSheet("color: red;");
                 if (clickedButton->text() != ""){
                     isGeneralGameOver(row, column, vectorBoard, boardSize);
-                    GamePlayers.switchPlayerTurn();
+                    ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
                 }
             }
         }
@@ -241,6 +245,11 @@ bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPu
             ui->player2Score->setText(QString::number(player2Score));
         }
     }
+    else{
+        GamePlayers.switchPlayerTurn();
+        ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+    }
+
     if (game.checkGameCompletion(gameBoard)){
         QString winner;
         if (player1Score > player2Score) {
