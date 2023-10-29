@@ -334,6 +334,43 @@ TEST(GameModeTest, CheckGameCompletionMixedBoard) {
     EXPECT_FALSE(gameMode.checkGameCompletion(gameBoard));
 }
 
+TEST(SimpleGameTest, CheckForSOS) {
+    SimpleGame simpleGame;
+    const int boardSize = 3; // Adjust as needed
+    std::vector<std::vector<std::string>> gameBoard(boardSize, std::vector<std::string>(boardSize, " "));
+
+    // Test for a valid horizontal SOS pattern
+    gameBoard[0][0] = "S";
+    gameBoard[0][1] = "O";
+    gameBoard[0][2] = "S";
+
+    EXPECT_TRUE(simpleGame.checkForSOS(0, 1, gameBoard, boardSize));
+
+    // Test for a valid vertical SOS pattern
+    gameBoard = std::vector<std::vector<std::string>>(boardSize, std::vector<std::string>(boardSize, " "));
+    gameBoard[0][0] = "S";
+    gameBoard[1][0] = "O";
+    gameBoard[2][0] = "S";
+
+    EXPECT_TRUE(simpleGame.checkForSOS(1, 0, gameBoard, boardSize));
+
+    // Test for a valid diagonal SOS pattern
+    gameBoard = std::vector<std::vector<std::string>>(boardSize, std::vector<std::string>(boardSize, " "));
+    gameBoard[0][0] = "S";
+    gameBoard[1][1] = "O";
+    gameBoard[2][2] = "S";
+
+    EXPECT_TRUE(simpleGame.checkForSOS(1, 1, gameBoard, boardSize));
+
+    // Test for no SOS pattern
+    gameBoard = std::vector<std::vector<std::string>>(boardSize, std::vector<std::string>(boardSize, " "));
+    gameBoard[0][0] = "S";
+    gameBoard[0][1] = "O";
+    gameBoard[0][2] = "O";
+
+    EXPECT_FALSE(simpleGame.checkForSOS(0, 1, gameBoard, boardSize));
+}
+
 TEST(GeneralGameTest, CheckForSOSValid) {
     GeneralGame generalGame;
     const int boardSize = 3;

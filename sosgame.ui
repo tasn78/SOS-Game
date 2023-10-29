@@ -60,7 +60,7 @@
       <item>
        <widget class="QLabel" name="player1ScoreLabel">
         <property name="text">
-         <string>Player1 Score</string>
+         <string>Player 1 Score</string>
         </property>
        </widget>
       </item>
@@ -380,8 +380,8 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="GameTypeButtonGroup"/>
   <buttongroup name="Player1MoveButtonGroup"/>
   <buttongroup name="Player2MoveButtonGroup"/>
+  <buttongroup name="GameTypeButtonGroup"/>
  </buttongroups>
 </ui>

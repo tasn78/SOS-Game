@@ -87,6 +87,9 @@ private slots:
     // Exit button
     void on_pushButton_clicked();
 
+    // Resets scores
+    void resetGame();
+
 
 private:
     Ui::SOSGame *ui;

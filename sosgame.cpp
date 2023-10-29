@@ -34,6 +34,7 @@ void SOSGame::on_StartButton_clicked()
         QMessageBox::critical(this, "You must choose a Simple or General game mode", "");
     }
     else{
+        resetGame();
         int size = ui->BoardSizeSlider->value();
         createGameBoard(size);
     }
@@ -213,8 +214,10 @@ bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPus
         QString winner;
         if (playerTurn == 1) {
             winner = "Player 1";
+            ui->player1Score->setText("1");
         } else if (playerTurn == 2) {
             winner = "Player 2";
+            ui->player1Score->setText("1");
         }
 
         // Show a QMessageBox declaring the winner
@@ -257,7 +260,7 @@ bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPu
             winner = "Player 2 wins!";
         }
         else{
-            winner = "Game is a draw!";
+            winner = "Game ends in a draw!";
         }
 
         // Show a QMessageBox declaring the winner
@@ -297,6 +300,13 @@ void SOSGame::on_player2_O_clicked()
 void SOSGame::on_pushButton_clicked()
 {
     exit(1);
+}
+
+void SOSGame::resetGame(){
+    ui->player1Score->setText("0");
+    ui->player2Score->setText("0");
+    player1Score = 0;
+    player2Score = 0;
 }
 
 // Prints vector in console for testing and visual look of board
