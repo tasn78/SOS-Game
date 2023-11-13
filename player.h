@@ -36,6 +36,13 @@ public:
     // Gets player 2's current move from S or O radio buttons
     QString getPlayer2Move();
 
+    // Setter and getter for player 1, human (1) or computer (0)
+    void setPlayer1Human(int);
+    int getPlayer1Human();
+
+    // Setter and getter for player 2, human (1) or computer (0)
+    void setPlayer2Human(int);
+    int getPlayer2Human();
 
 private:
     int player1Score = 0;
@@ -43,6 +50,8 @@ private:
     int playerTurn = 1;
     QString player1Move;
     QString player2Move;
+    int player1Human;
+    int player2Human;
 };
 
 #endif // PLAYER_H

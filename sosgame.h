@@ -90,6 +90,14 @@ private slots:
     // Resets scores
     void resetGame();
 
+    // Sets player 1 to human or computer
+    void on_player1Human_clicked();
+    void on_player1Computer_clicked();
+
+    // Sets player 2 to human or computer
+    void on_player2Human_clicked();
+    void on_player2Computer_clicked();
+
 
 private:
     Ui::SOSGame *ui;
@@ -100,6 +108,7 @@ private:
     Players GamePlayers;
     int player1Score = 0;
     int player2Score = 0;
+
 };
 
 

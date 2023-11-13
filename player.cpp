@@ -41,3 +41,23 @@ void Players::setPlayer2Move(QString S_or_O){
 QString Players::getPlayer2Move(){
     return player2Move;
 }
+
+// Setter for player 1, human (1) or computer (0)
+void Players::setPlayer1Human(int humanOrComputer){
+    player1Human = humanOrComputer;
+}
+
+// Getter for player 1, human (1) or computer (0)
+int Players::getPlayer1Human(){
+    return player1Human;
+}
+
+// Setter for player 2, human (1) or computer (0)
+void Players::setPlayer2Human(int humanOrComputer){
+    player2Human = humanOrComputer;
+}
+
+// Getter for player 2, human (1) or computer (0)
+int Players::getPlayer2Human(){
+    return player2Human;
+}

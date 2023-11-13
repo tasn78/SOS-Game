@@ -34,6 +34,9 @@ public:
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer_5;
+    QRadioButton *player1Human;
+    QRadioButton *player1Computer;
     QSpacerItem *verticalSpacer_3;
     QLabel *player1ScoreLabel;
     QLabel *player1Score;
@@ -54,6 +57,9 @@ public:
     QLabel *BoardSizeOutput;
     QPushButton *StartButton;
     QVBoxLayout *verticalLayout_2;
+    QSpacerItem *verticalSpacer_6;
+    QRadioButton *player2Human;
+    QRadioButton *player2Computer;
     QSpacerItem *verticalSpacer_4;
     QLabel *player2ScoreLabel;
     QLabel *player2Score;
@@ -62,9 +68,11 @@ public:
     QRadioButton *player2_S;
     QRadioButton *player2_O;
     QStatusBar *statusbar;
+    QButtonGroup *Player2MoveButtonGroup;
     QButtonGroup *GameTypeButtonGroup;
     QButtonGroup *Player1MoveButtonGroup;
-    QButtonGroup *Player2MoveButtonGroup;
+    QButtonGroup *player1HumanOrComp;
+    QButtonGroup *player2HumanOrComputer;
 
     void setupUi(QMainWindow *SOSGame)
     {
@@ -87,6 +95,24 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setSizeConstraint(QLayout::SetMinimumSize);
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_5);
+
+        player1Human = new QRadioButton(centralwidget);
+        player1HumanOrComp = new QButtonGroup(SOSGame);
+        player1HumanOrComp->setObjectName("player1HumanOrComp");
+        player1HumanOrComp->addButton(player1Human);
+        player1Human->setObjectName("player1Human");
+
+        verticalLayout->addWidget(player1Human);
+
+        player1Computer = new QRadioButton(centralwidget);
+        player1HumanOrComp->addButton(player1Computer);
+        player1Computer->setObjectName("player1Computer");
+
+        verticalLayout->addWidget(player1Computer);
+
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_3);
@@ -226,6 +252,24 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setSizeConstraint(QLayout::SetMinimumSize);
+        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer_6);
+
+        player2Human = new QRadioButton(centralwidget);
+        player2HumanOrComputer = new QButtonGroup(SOSGame);
+        player2HumanOrComputer->setObjectName("player2HumanOrComputer");
+        player2HumanOrComputer->addButton(player2Human);
+        player2Human->setObjectName("player2Human");
+
+        verticalLayout_2->addWidget(player2Human);
+
+        player2Computer = new QRadioButton(centralwidget);
+        player2HumanOrComputer->addButton(player2Computer);
+        player2Computer->setObjectName("player2Computer");
+
+        verticalLayout_2->addWidget(player2Computer);
+
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_2->addItem(verticalSpacer_4);
@@ -282,7 +326,9 @@ public:
     void retranslateUi(QMainWindow *SOSGame)
     {
         SOSGame->setWindowTitle(QCoreApplication::translate("SOSGame", "SOSGame", nullptr));
-        player1ScoreLabel->setText(QCoreApplication::translate("SOSGame", "Player1 Score", nullptr));
+        player1Human->setText(QCoreApplication::translate("SOSGame", "Player 1", nullptr));
+        player1Computer->setText(QCoreApplication::translate("SOSGame", "Computer", nullptr));
+        player1ScoreLabel->setText(QCoreApplication::translate("SOSGame", "Player 1 Score", nullptr));
         player1Score->setText(QCoreApplication::translate("SOSGame", "0", nullptr));
         label_3->setText(QCoreApplication::translate("SOSGame", "Player 1 : Blue", nullptr));
         player1_S->setText(QCoreApplication::translate("SOSGame", "S", nullptr));
@@ -294,6 +340,8 @@ public:
         BoardSizeLabel->setText(QCoreApplication::translate("SOSGame", "Board Size", nullptr));
         BoardSizeOutput->setText(QCoreApplication::translate("SOSGame", "3", nullptr));
         StartButton->setText(QCoreApplication::translate("SOSGame", "Start Game", nullptr));
+        player2Human->setText(QCoreApplication::translate("SOSGame", "Player 2", nullptr));
+        player2Computer->setText(QCoreApplication::translate("SOSGame", "Computer", nullptr));
         player2ScoreLabel->setText(QCoreApplication::translate("SOSGame", "Player 2 Score", nullptr));
         player2Score->setText(QCoreApplication::translate("SOSGame", "0", nullptr));
         label_4->setText(QCoreApplication::translate("SOSGame", "Player 2 : Red", nullptr));

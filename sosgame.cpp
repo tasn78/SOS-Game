@@ -28,11 +28,16 @@ void SOSGame::on_BoardSizeSlider_valueChanged(int value)
 // Starts game and creates board if gametype has been chosen, else message appears to choose one
 void SOSGame::on_StartButton_clicked()
 {
-    //Check and set game mode based on Simple or General game mode radio buttons
-    SimpleGame SGame;
     if (GameType != 'S' && GameType != 'G'){
-        QMessageBox::critical(this, "You must choose a Simple or General game mode", "");
+        QMessageBox::critical(this, "Unable to start the game", "You must choose a Simple or General game mode");
     }
+
+    if ((GamePlayers.getPlayer1Human() != 0 && GamePlayers.getPlayer1Human() != 1) ||
+        (GamePlayers.getPlayer2Human() != 0 && GamePlayers.getPlayer2Human() != 1))
+    {
+        QMessageBox::critical(this, "Unable to start the game", "You must choose an option for Player 1 and Player 2 as a computer or player");
+    }
+
     else{
         resetGame();
         int size = ui->BoardSizeSlider->value();
@@ -302,11 +307,30 @@ void SOSGame::on_pushButton_clicked()
     exit(1);
 }
 
+// Resets game and scores
 void SOSGame::resetGame(){
     ui->player1Score->setText("0");
     ui->player2Score->setText("0");
     player1Score = 0;
     player2Score = 0;
+}
+
+// Sets player 1 to human or computer
+void SOSGame::on_player1Human_clicked(){
+    GamePlayers.setPlayer1Human(1);
+}
+
+void SOSGame::on_player1Computer_clicked(){
+    GamePlayers.setPlayer1Human(0);
+}
+
+// Sets player 2 to human or computer
+void SOSGame::on_player2Human_clicked(){
+    GamePlayers.setPlayer2Human(1);
+}
+
+void SOSGame::on_player2Computer_clicked(){
+    GamePlayers.setPlayer2Human(0);
 }
 
 // Prints vector in console for testing and visual look of board

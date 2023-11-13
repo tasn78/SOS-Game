@@ -28,7 +28,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_SOSGame_t {
-    uint offsetsAndSizes[26];
+    uint offsetsAndSizes[36];
     char stringdata0[8];
     char stringdata1[32];
     char stringdata2[1];
@@ -42,6 +42,11 @@ struct qt_meta_stringdata_SOSGame_t {
     char stringdata10[21];
     char stringdata11[21];
     char stringdata12[22];
+    char stringdata13[10];
+    char stringdata14[24];
+    char stringdata15[27];
+    char stringdata16[24];
+    char stringdata17[27];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_SOSGame_t::offsetsAndSizes) + ofs), len 
@@ -59,7 +64,12 @@ Q_CONSTINIT static const qt_meta_stringdata_SOSGame_t qt_meta_stringdata_SOSGame
         QT_MOC_LITERAL(169, 20),  // "on_player1_O_clicked"
         QT_MOC_LITERAL(190, 20),  // "on_player2_S_clicked"
         QT_MOC_LITERAL(211, 20),  // "on_player2_O_clicked"
-        QT_MOC_LITERAL(232, 21)   // "on_pushButton_clicked"
+        QT_MOC_LITERAL(232, 21),  // "on_pushButton_clicked"
+        QT_MOC_LITERAL(254, 9),  // "resetGame"
+        QT_MOC_LITERAL(264, 23),  // "on_player1Human_clicked"
+        QT_MOC_LITERAL(288, 26),  // "on_player1Computer_clicked"
+        QT_MOC_LITERAL(315, 23),  // "on_player2Human_clicked"
+        QT_MOC_LITERAL(339, 26)   // "on_player2Computer_clicked"
     },
     "SOSGame",
     "on_BoardSizeSlider_valueChanged",
@@ -73,7 +83,12 @@ Q_CONSTINIT static const qt_meta_stringdata_SOSGame_t qt_meta_stringdata_SOSGame
     "on_player1_O_clicked",
     "on_player2_S_clicked",
     "on_player2_O_clicked",
-    "on_pushButton_clicked"
+    "on_pushButton_clicked",
+    "resetGame",
+    "on_player1Human_clicked",
+    "on_player1Computer_clicked",
+    "on_player2Human_clicked",
+    "on_player2Computer_clicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -84,7 +99,7 @@ Q_CONSTINIT static const uint qt_meta_data_SOSGame[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -92,19 +107,29 @@ Q_CONSTINIT static const uint qt_meta_data_SOSGame[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   74,    2, 0x08,    1 /* Private */,
-       4,    0,   77,    2, 0x08,    3 /* Private */,
-       5,    0,   78,    2, 0x08,    4 /* Private */,
-       6,    0,   79,    2, 0x08,    5 /* Private */,
-       7,    0,   80,    2, 0x08,    6 /* Private */,
-       8,    0,   81,    2, 0x08,    7 /* Private */,
-       9,    0,   82,    2, 0x08,    8 /* Private */,
-      10,    0,   83,    2, 0x08,    9 /* Private */,
-      11,    0,   84,    2, 0x08,   10 /* Private */,
-      12,    0,   85,    2, 0x08,   11 /* Private */,
+       1,    1,  104,    2, 0x08,    1 /* Private */,
+       4,    0,  107,    2, 0x08,    3 /* Private */,
+       5,    0,  108,    2, 0x08,    4 /* Private */,
+       6,    0,  109,    2, 0x08,    5 /* Private */,
+       7,    0,  110,    2, 0x08,    6 /* Private */,
+       8,    0,  111,    2, 0x08,    7 /* Private */,
+       9,    0,  112,    2, 0x08,    8 /* Private */,
+      10,    0,  113,    2, 0x08,    9 /* Private */,
+      11,    0,  114,    2, 0x08,   10 /* Private */,
+      12,    0,  115,    2, 0x08,   11 /* Private */,
+      13,    0,  116,    2, 0x08,   12 /* Private */,
+      14,    0,  117,    2, 0x08,   13 /* Private */,
+      15,    0,  118,    2, 0x08,   14 /* Private */,
+      16,    0,  119,    2, 0x08,   15 /* Private */,
+      17,    0,  120,    2, 0x08,   16 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -147,6 +172,16 @@ Q_CONSTINIT const QMetaObject SOSGame::staticMetaObject = { {
         // method 'on_player2_O_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'resetGame'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_player1Human_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_player1Computer_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_player2Human_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_player2Computer_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -168,6 +203,11 @@ void SOSGame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 7: _t->on_player2_S_clicked(); break;
         case 8: _t->on_player2_O_clicked(); break;
         case 9: _t->on_pushButton_clicked(); break;
+        case 10: _t->resetGame(); break;
+        case 11: _t->on_player1Human_clicked(); break;
+        case 12: _t->on_player1Computer_clicked(); break;
+        case 13: _t->on_player2Human_clicked(); break;
+        case 14: _t->on_player2Computer_clicked(); break;
         default: ;
         }
     }
@@ -192,13 +232,13 @@ int SOSGame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 15;
     }
     return _id;
 }

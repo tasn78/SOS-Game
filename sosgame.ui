@@ -45,6 +45,39 @@
        <enum>QLayout::SetMinimumSize</enum>
       </property>
       <item>
+       <spacer name="verticalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="player1Human">
+        <property name="text">
+         <string>Player 1</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">player1HumanOrComp</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="player1Computer">
+        <property name="text">
+         <string>Computer</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">player1HumanOrComp</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_3">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -296,6 +329,39 @@
        <enum>QLayout::SetMinimumSize</enum>
       </property>
       <item>
+       <spacer name="verticalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="player2Human">
+        <property name="text">
+         <string>Player 2</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">player2HumanOrComputer</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="player2Computer">
+        <property name="text">
+         <string>Computer</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">player2HumanOrComputer</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_4">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -380,8 +446,10 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="Player1MoveButtonGroup"/>
   <buttongroup name="Player2MoveButtonGroup"/>
   <buttongroup name="GameTypeButtonGroup"/>
+  <buttongroup name="Player1MoveButtonGroup"/>
+  <buttongroup name="player1HumanOrComp"/>
+  <buttongroup name="player2HumanOrComputer"/>
  </buttongroups>
 </ui>
