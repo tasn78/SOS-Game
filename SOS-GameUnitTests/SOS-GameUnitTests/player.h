@@ -51,12 +51,35 @@ public:
         return player2Move;
     }
 
+    // Setter for player 1, human (1) or computer (0)
+    void setPlayer1Human(int humanOrComputer) {
+        player1Human = humanOrComputer;
+    }
+
+    // Getter for player 1, human (1) or computer (0)
+    int getPlayer1Human() {
+        return player1Human;
+    }
+
+    // Setter for player 2, human (1) or computer (0)
+    void setPlayer2Human(int humanOrComputer) {
+        player2Human = humanOrComputer;
+    }
+
+    // Getter for player 2, human (1) or computer (0)
+    int getPlayer2Human() {
+        return player2Human;
+    }
+
+
 private:
     int player1Score = 0;
     int player2Score = 0;
     int playerTurn = 1;
     std::string player1Move;
     std::string player2Move;
+    int player1Human;
+    int player2Human;
 };
 
 #endif // PLAYER_H

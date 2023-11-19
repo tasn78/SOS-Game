@@ -1,0 +1,5 @@
+﻿  test.cpp
+C:\Users\Owner\Documents\Github\SOS-Game\SOSGameComputerTests\SOSGameComputerTests\gamemode.h(34,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  (compiling source file '/test.cpp')
+  
+  SOSGameComputerTests.vcxproj -> C:\Users\Owner\Documents\Github\SOS-Game\SOSGameComputerTests\x64\Debug\SOSGameComputerTests.exe
