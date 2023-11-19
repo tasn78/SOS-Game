@@ -7,6 +7,9 @@ SOSGame::SOSGame(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Timer delay for computer players
+    computerMoveTimer = new QTimer(this);
+    connect(computerMoveTimer, SIGNAL(timeout()), this, SLOT(simulateComputerTurn()));
 
 }
 
@@ -83,6 +86,15 @@ void SOSGame::createGameBoard(int boardSize) {
 
     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
 
+    if (GamePlayers.getPlayer1Human() == 0 && GamePlayers.getPlayer2Human() == 0){
+        startComputerVsComputer();
+    }
+
+    else if (GamePlayers.getPlayer1Human() == 0){
+        makeComputerMove(GamePlayers.getPlayerTurn());
+        GamePlayers.setPlayerTurn(2);
+        ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+    }
 }
 
 
@@ -154,7 +166,11 @@ void SOSGame::gameBoardButtonClick(){
                     GamePlayers.switchPlayerTurn();
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
                     ;
-                }
+                    if (GamePlayers.getPlayer2Human() == 0){
+                        makeComputerMove(GamePlayers.getPlayerTurn());
+                        GamePlayers.switchPlayerTurn();
+                    }
+                }               
             }
         }
 
@@ -167,6 +183,10 @@ void SOSGame::gameBoardButtonClick(){
                     isSimpleGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+                    if (GamePlayers.getPlayer1Human() == 0){
+                        makeComputerMove(GamePlayers.getPlayerTurn());
+                        GamePlayers.switchPlayerTurn();
+                    }
                 }
             }
         }
@@ -184,6 +204,11 @@ void SOSGame::gameBoardButtonClick(){
                 if (clickedButton->text() != ""){
                     isGeneralGameOver(row, column, vectorBoard, boardSize);
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+                    if (GamePlayers.getPlayer2Human() && GamePlayers.getPlayerTurn() == 2){
+                        while (GamePlayers.getPlayerTurn() == 2){
+                            makeComputerMove(GamePlayers.getPlayerTurn());
+                        }
+                    }
                 }
             }
         }
@@ -196,6 +221,11 @@ void SOSGame::gameBoardButtonClick(){
                 if (clickedButton->text() != ""){
                     isGeneralGameOver(row, column, vectorBoard, boardSize);
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+                    if (GamePlayers.getPlayer1Human() == 0 && GamePlayers.getPlayerTurn() == 1){
+                        while (GamePlayers.getPlayerTurn() == 1){
+                            makeComputerMove(GamePlayers.getPlayerTurn());
+                        }
+                    }
                 }
             }
         }
@@ -228,9 +258,14 @@ bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPus
         // Show a QMessageBox declaring the winner
         QMessageBox::information(this, "Game Over", winner + " wins!");
 
+        gameOverOptions();
+
+        GameOver = true;
+
         return true; // The game is over
     }
 
+    GameOver = false;
     return false; // The game is not over
 }
 
@@ -271,10 +306,104 @@ bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPu
         // Show a QMessageBox declaring the winner
         QMessageBox::information(this, "Game Over", winner);
 
+        gameOverOptions();
+
+        GameOver = true;
+
         return true; // The game is over
     }
 
+    GameOver = false;
     return false; // The game is not over
+}
+
+
+// Makes move for computer player 1 or 2
+void SOSGame::makeComputerMove(int player) {
+    // Randomly choose an empty cell
+    int row, column;
+    bool found = false;
+
+    srand(time(0)); // Random number generator
+
+    while (!found) {
+        row = rand() % boardSize; // Random row
+        column = rand() % boardSize; // Random column
+        computerMoveRow = row;
+        computerMoveColumn = column;
+        QPushButton* button = vectorBoard[row][column]; // Random button
+
+        if (button && button->text().isEmpty()) {
+            found = true;
+            QString computerChoice = (rand() % 2 == 0) ? "S" : "O"; // ChatGPT algorithm to randomly get 'S' or 'O'
+            // Makes the move
+            if (player == 1){
+                button->setText(computerChoice); // Set to 'S' or 'O' based on computer's choice
+                button->setStyleSheet("color: blue;"); // Example style
+            }
+            else if (player == 2){
+                button->setText(computerChoice); // Set to 'S' or 'O' based on computer's choice
+                button->setStyleSheet("color: red;"); // Example style
+            }
+
+            // Check for game over conditions
+            if (getGameType() == 'S') {
+                isSimpleGameOver(row, column, vectorBoard, boardSize);
+            } else if (getGameType() == 'G') {
+                isGeneralGameOver(row, column, vectorBoard, boardSize);
+            }
+        }
+    }
+}
+
+
+// Simulates a game where both players are computer players
+void SOSGame::simulateComputerTurn() {
+    // Make a computer move
+    makeComputerMove(GamePlayers.getPlayerTurn());
+
+    // Check if the game is over based on the game type
+    bool gameEnded;
+    if (getGameType() == 'S') {
+        gameEnded = isSimpleGameOver(computerMoveRow, computerMoveColumn, vectorBoard, boardSize);
+    } else if (getGameType() == 'G') {
+        gameEnded = isGeneralGameOver(computerMoveRow, computerMoveColumn, vectorBoard, boardSize);
+    } else {
+        // Handle unexpected game type, if necessary
+        gameEnded = false;
+    }
+
+    if (gameEnded) {
+        computerMoveTimer->stop(); // Stop the timer if the game is over
+    } else {
+        GamePlayers.switchPlayerTurn(); // Switch turns for the next move
+        ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+    }
+}
+
+
+// Starts game of computer vs computer setting computer move delay
+void SOSGame::startComputerVsComputer() {
+    computerMoveTimer->start(1000);
+}
+
+
+// Options when the game is over
+void SOSGame::gameOverOptions() {
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Game Over");
+    msgBox.setText("Would you like to restart or continue?");
+    QPushButton *restartButton = msgBox.addButton("Restart", QMessageBox::ActionRole);
+    QPushButton *continueButton = msgBox.addButton("Continue", QMessageBox::ActionRole);
+
+    msgBox.exec();
+
+    if (msgBox.clickedButton() == restartButton) {
+        resetGame();
+        ui->StartButton->click();
+    } else if (msgBox.clickedButton() == continueButton) {
+        // Message box will close and game will continue
+    }
 }
 
 // Updates player 1 move to 'S'
@@ -313,6 +442,7 @@ void SOSGame::resetGame(){
     ui->player2Score->setText("0");
     player1Score = 0;
     player2Score = 0;
+    GamePlayers.setPlayerTurn(1);
 }
 
 // Sets player 1 to human or computer

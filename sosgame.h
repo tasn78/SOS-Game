@@ -98,6 +98,18 @@ private slots:
     void on_player2Human_clicked();
     void on_player2Computer_clicked();
 
+    //  Computer makes move when 1 player and 1 computer
+    void makeComputerMove(int player);
+
+    // Simulates a game of computer vs computer
+    void simulateComputerTurn();
+
+    // Starts game of computer vs computer setting computer move delay
+    void startComputerVsComputer();
+
+    // Message box to start new game or continue on game end
+    void gameOverOptions();
+
 
 private:
     Ui::SOSGame *ui;
@@ -108,6 +120,9 @@ private:
     Players GamePlayers;
     int player1Score = 0;
     int player2Score = 0;
+    QTimer* computerMoveTimer;
+    int computerMoveRow;
+    int computerMoveColumn;
 
 };
 
