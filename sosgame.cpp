@@ -45,9 +45,6 @@ void SOSGame::on_StartButton_clicked()
 
     else{
         resetGame();
-        if (ui->RecordGameBox->isChecked()) {
-            startRecording();
-        }
         int size = ui->BoardSizeSlider->value();
         createGameBoard(size);
     }
@@ -99,6 +96,10 @@ void SOSGame::createGameBoard(int boardSize) {
         makeComputerMove(GamePlayers.getPlayerTurn());
         GamePlayers.setPlayerTurn(2);
         ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
+    }
+
+    if (ui->RecordGameBox->isChecked()) {
+        startRecording();
     }
 }
 
@@ -304,9 +305,6 @@ bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPus
             QMessageBox::information(this, "Game Over", winner + " wins!");
             gameOverOptions();
             GameOver = true;
-            if (GameOver && ui->RecordGameBox->isChecked()) {
-                    stopRecording();
-                }
         }
         return true; // The game is over
     }
@@ -339,10 +337,6 @@ bool SOSGame::isGeneralGameOver(int row, int column, std::vector<std::vector<QPu
             QMessageBox::information(this, "Game Over", winner);
             gameOverOptions();
             GameOver = true;
-
-            if (GameOver && ui->RecordGameBox->isChecked()) {
-                    stopRecording();
-                }
         }
 
         return true; // The game is over
@@ -474,14 +468,20 @@ void SOSGame::gameOverOptions() {
             resumeGame();
             msgBox->close();
         });
-    connect(closeButton, &QPushButton::clicked, [msgBox]() {
-            msgBox->close(); // Simply close the message box
+    connect(closeButton, &QPushButton::clicked, [this, msgBox]() {
+        if (ui->RecordGameBox->isChecked()) {
+            stopRecording();
+        }
+        msgBox->close(); // Simply close the message box
         });
     msgBox->show(); // Show the message box without blocking
 }
 
 // Restarts handled for comp vs comp game
 void SOSGame::handleRestart() {
+    if (GameOver && ui->RecordGameBox->isChecked()) {
+        stopRecording();
+    }
     resetGame();
     ui->StartButton->click();
     gameOverExecuted = false;
@@ -558,10 +558,7 @@ void SOSGame::on_player2Computer_clicked(){
 }
 
 void SOSGame::on_RecordGameBox_stateChanged(int arg1){
-    if (arg1 == Qt::Checked) {
-        // Checkbox is checked - start recording
-        startRecording();
-    } else if (arg1 == Qt::Unchecked) {
+    if (arg1 == Qt::Unchecked) {
         // Checkbox is unchecked - stop recording or do nothing
         stopRecording();  // Implement this function as per your requirements
     }
@@ -627,7 +624,7 @@ void SOSGame::loadRecordedGame() {
     readBoardSize = line.split(":")[1].trimmed().toInt();
 
     // Set up the game for replay
-    setGameType(gameType); // Adjust this function to set the game type
+    setGameType(gameType);
     initializeBoardForReplay(readBoardSize); // Implement this function to set up the board
 
     recordedMoves.clear(); // Clear previous moves if any
