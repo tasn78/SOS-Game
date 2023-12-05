@@ -25,7 +25,17 @@
 #include <QHeaderView>
 #include <QVBoxLayout>
 #include <QtGui>
+#include <QFile>
+#include <QTextStream>
 
+
+// Used for recording
+struct GameMove {
+    int player;
+    int row;
+    int column;
+    char symbol;
+};
 
 class SOSGame : public QMainWindow
 {
@@ -53,6 +63,7 @@ public:
 
     // Prints vector for testing/visual purposes
     void printVectorBoard(const std::vector<std::vector<QPushButton*>>& vectorBoard);
+
 
 
 private slots:
@@ -110,6 +121,39 @@ private slots:
     // Message box to start new game or continue on game end
     void gameOverOptions();
 
+    //  Restarts on continuing at end of game
+    void handleRestart();
+
+    // Resumes game after a win/loss/draw if user selects continue at the end of game
+    void resumeGame();
+
+    // Sets whether user wants to record or not
+    void on_RecordGameBox_stateChanged(int arg1);
+
+    // Records individul move to stream
+    void recordMove(const GameMove &move);
+
+    // Starts recording game
+    void startRecording();
+
+    // Stops recordin game
+    void stopRecording();
+
+    // Function for ReplayGameButton ui button
+    void on_ReplayGameButton_clicked();
+
+    // Loads a recorded game from txt file
+    void loadRecordedGame();
+
+    // Applies move to game board
+    void applyMove(const GameMove& move);
+
+    // Performs single stemp of replay
+    void performReplayStep();
+
+    // Creates game board for replay
+    void initializeBoardForReplay(int boardSize);
+
 
 private:
     Ui::SOSGame *ui;
@@ -123,7 +167,12 @@ private:
     QTimer* computerMoveTimer;
     int computerMoveRow;
     int computerMoveColumn;
-
+    bool gameOverExecuted = false;
+    QTextStream outputStream;
+    QFile file;
+    QList<GameMove> recordedMoves;
+    int currentMoveIndex = 0;
+    QTimer* replayTimer;
 };
 
 

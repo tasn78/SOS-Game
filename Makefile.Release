@@ -288,6 +288,7 @@ release/moc_sosgame.cpp: sosgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qrubberband.h \
 		simplegame.h \
+		generalgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QWidget \
@@ -531,9 +532,11 @@ release/moc_sosgame.cpp: sosgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundogroup.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundostack.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtguiversion.h \
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QFile \
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QTextStream \
 		release/moc_predefs.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/bin/moc.exe
-	C:\Qt\Qt6.4.0\6.4.0\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Owner/Documents/GitHub/SOS-Game/release/moc_predefs.h -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/mkspecs/win32-g++ -IC:/Users/Owner/Documents/GitHub/SOS-Game -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/x86_64-w64-mingw32/include sosgame.h -o release\moc_sosgame.cpp
+	C:\Qt\Qt6.4.0\6.4.0\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Owner/Documents/Github/SOS-Game/release/moc_predefs.h -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/mkspecs/win32-g++ -IC:/Users/Owner/Documents/Github/SOS-Game -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui -IC:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Qt6.4.0/Tools/mingw1120_64/x86_64-w64-mingw32/include sosgame.h -o release\moc_sosgame.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -721,251 +724,7 @@ release/gamemode.o: gamemode.cpp gamemode.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qdialog.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QDebug \
-		sosgame.h \
-		player.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QString \
-		simplegame.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QMainWindow \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qmainwindow.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QWidget \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QPushButton \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qjnitypes.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfuture.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qmutex.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtsan_impl.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qresultstore.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qthreadpool.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qthread.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qrunnable.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qexception.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qpromise.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QtCore \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QtCoreDepends \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/q20algorithm.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/q20functional.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/q20iterator.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/q23functional.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qabstractanimation.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qabstractnativeeventfilter.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qabstractproxymodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qanimationgroup.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qapplicationstatic.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QMutex \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qassociativeiterable.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qbasictimer.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qbitarray.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qbuffer.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qbytearraymatcher.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcache.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcalendar.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcborarray.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcborvalue.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qdatetime.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcborcommon.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/quuid.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcbormap.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcborstream.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcborstreamreader.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfloat16.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcborstreamwriter.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcollator.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcommandlineoption.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcommandlineparser.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qconcatenatetablesproxymodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qcryptographichash.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qdir.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfile.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfiledevice.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfileinfo.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qdiriterator.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qeasingcurve.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qendian.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfactoryinterface.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfileselector.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QStringList \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfilesystemwatcher.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfuturesynchronizer.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qfuturewatcher.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qidentityproxymodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qjnienvironment.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QScopedPointer \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qjniobject.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qjsonarray.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qjsonvalue.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qjsondocument.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qjsonobject.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qlibrary.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qlibraryinfo.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qversionnumber.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qlockfile.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qloggingcategory.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qmessageauthenticationcode.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qmetaobject.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qmimedata.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qmimedatabase.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qmimetype.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qobjectcleanuphandler.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qoperatingsystemversion.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qparallelanimationgroup.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qpauseanimation.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qplugin.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qpluginloader.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qprocess.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qproperty.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qpropertyprivate.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qpropertyanimation.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qvariantanimation.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qqueue.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qrandom.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qreadwritelock.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qresource.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsavefile.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qscopedvaluerollback.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsemaphore.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsequentialanimationgroup.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsequentialiterable.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsettings.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsharedmemory.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsignalmapper.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsimd.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsocketnotifier.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsortfilterproxymodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qstack.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qstandardpaths.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qstorageinfo.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qstringconverter.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qstringlistmodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qsystemsemaphore.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtemporarydir.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtemporaryfile.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtextboundaryfinder.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qthreadstorage.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtimeline.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtimer.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtimezone.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtranslator.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtransposeproxymodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qurlquery.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qvarianthash.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QHash \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QVariant \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qvariantlist.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qvariantmap.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QMap \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qvector.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qwaitcondition.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QDeadlineTimer \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qwineventnotifier.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qxmlstream.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qxpfunctional.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qtcoreversion.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QTableWidgetItem \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QVBoxLayout \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/QtGui \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/QtGuiDepends \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qabstractfileiconprovider.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qabstracttextdocumentlayout.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextlayout.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qglyphrun.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qrawfont.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qfontdatabase.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextdocument.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextformat.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qaccessible.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qaccessible_base.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qaccessiblebridge.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qaccessibleobject.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qaccessibleplugin.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qactiongroup.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qbackingstore.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qwindow.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QEvent \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QMargins \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qsurface.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qsurfaceformat.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qclipboard.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qcolorspace.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qcolortransform.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qdesktopservices.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qdrag.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qfilesystemmodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qgenericmatrix.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qgenericplugin.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qgenericpluginfactory.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qiconengine.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qiconengineplugin.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qimageiohandler.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qimagereader.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qimagewriter.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qmatrix4x4.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qvector3d.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qvector4d.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qquaternion.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qmovie.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qoffscreensurface.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qoffscreensurface_platform.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qopengl.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/qt_windows.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qopengles2ext.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qopenglext.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qopenglcontext.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/QSurfaceFormat \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qopenglcontext_platform.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qopenglextrafunctions.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qopenglfunctions.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpagedpaintdevice.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpagelayout.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpagesize.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpageranges.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpaintdevicewindow.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/QWindow \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/QPaintDevice \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpaintengine.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpainterpath.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpdfwriter.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpicture.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qpixmapcache.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qrasterwindow.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/QPaintDeviceWindow \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qrgbafloat.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qsessionmanager.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qshortcut.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qstandarditemmodel.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qstatictext.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qstylehints.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qsyntaxhighlighter.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextobject.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextdocumentfragment.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextdocumentwriter.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtextlist.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtexttable.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundogroup.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundostack.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtguiversion.h
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\gamemode.o gamemode.cpp
 
 release/generalgame.o: generalgame.cpp generalgame.h \
@@ -1295,6 +1054,7 @@ release/main.o: main.cpp sosgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qrubberband.h \
 		simplegame.h \
+		generalgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QWidget \
@@ -1537,7 +1297,9 @@ release/main.o: main.cpp sosgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtexttable.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundogroup.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundostack.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtguiversion.h
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtguiversion.h \
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QFile \
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QTextStream
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o main.cpp
 
 release/player.o: player.cpp player.h \
@@ -1917,6 +1679,7 @@ release/sosgame.o: sosgame.cpp sosgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qrubberband.h \
 		simplegame.h \
+		generalgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtWidgets/QWidget \
@@ -2159,7 +1922,9 @@ release/sosgame.o: sosgame.cpp sosgame.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtexttable.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundogroup.h \
 		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qundostack.h \
-		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtguiversion.h
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtGui/qtguiversion.h \
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QFile \
+		C:/Qt/Qt6.4.0/6.4.0/mingw_64/include/QtCore/QTextStream
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\sosgame.o sosgame.cpp
 
 release/moc_sosgame.o: release/moc_sosgame.cpp 

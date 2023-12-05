@@ -28,7 +28,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_SOSGame_t {
-    uint offsetsAndSizes[46];
+    uint offsetsAndSizes[76];
     char stringdata0[8];
     char stringdata1[32];
     char stringdata2[1];
@@ -52,6 +52,21 @@ struct qt_meta_stringdata_SOSGame_t {
     char stringdata20[21];
     char stringdata21[24];
     char stringdata22[16];
+    char stringdata23[14];
+    char stringdata24[11];
+    char stringdata25[30];
+    char stringdata26[5];
+    char stringdata27[11];
+    char stringdata28[9];
+    char stringdata29[5];
+    char stringdata30[15];
+    char stringdata31[14];
+    char stringdata32[28];
+    char stringdata33[17];
+    char stringdata34[10];
+    char stringdata35[18];
+    char stringdata36[25];
+    char stringdata37[10];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_SOSGame_t::offsetsAndSizes) + ofs), len 
@@ -79,7 +94,22 @@ Q_CONSTINIT static const qt_meta_stringdata_SOSGame_t qt_meta_stringdata_SOSGame
         QT_MOC_LITERAL(383, 6),  // "player"
         QT_MOC_LITERAL(390, 20),  // "simulateComputerTurn"
         QT_MOC_LITERAL(411, 23),  // "startComputerVsComputer"
-        QT_MOC_LITERAL(435, 15)   // "gameOverOptions"
+        QT_MOC_LITERAL(435, 15),  // "gameOverOptions"
+        QT_MOC_LITERAL(451, 13),  // "handleRestart"
+        QT_MOC_LITERAL(465, 10),  // "resumeGame"
+        QT_MOC_LITERAL(476, 29),  // "on_RecordGameBox_stateChanged"
+        QT_MOC_LITERAL(506, 4),  // "arg1"
+        QT_MOC_LITERAL(511, 10),  // "recordMove"
+        QT_MOC_LITERAL(522, 8),  // "GameMove"
+        QT_MOC_LITERAL(531, 4),  // "move"
+        QT_MOC_LITERAL(536, 14),  // "startRecording"
+        QT_MOC_LITERAL(551, 13),  // "stopRecording"
+        QT_MOC_LITERAL(565, 27),  // "on_ReplayGameButton_clicked"
+        QT_MOC_LITERAL(593, 16),  // "loadRecordedGame"
+        QT_MOC_LITERAL(610, 9),  // "applyMove"
+        QT_MOC_LITERAL(620, 17),  // "performReplayStep"
+        QT_MOC_LITERAL(638, 24),  // "initializeBoardForReplay"
+        QT_MOC_LITERAL(663, 9)   // "boardSize"
     },
     "SOSGame",
     "on_BoardSizeSlider_valueChanged",
@@ -103,7 +133,22 @@ Q_CONSTINIT static const qt_meta_stringdata_SOSGame_t qt_meta_stringdata_SOSGame
     "player",
     "simulateComputerTurn",
     "startComputerVsComputer",
-    "gameOverOptions"
+    "gameOverOptions",
+    "handleRestart",
+    "resumeGame",
+    "on_RecordGameBox_stateChanged",
+    "arg1",
+    "recordMove",
+    "GameMove",
+    "move",
+    "startRecording",
+    "stopRecording",
+    "on_ReplayGameButton_clicked",
+    "loadRecordedGame",
+    "applyMove",
+    "performReplayStep",
+    "initializeBoardForReplay",
+    "boardSize"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -114,7 +159,7 @@ Q_CONSTINIT static const uint qt_meta_data_SOSGame[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      30,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -122,25 +167,36 @@ Q_CONSTINIT static const uint qt_meta_data_SOSGame[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  128,    2, 0x08,    1 /* Private */,
-       4,    0,  131,    2, 0x08,    3 /* Private */,
-       5,    0,  132,    2, 0x08,    4 /* Private */,
-       6,    0,  133,    2, 0x08,    5 /* Private */,
-       7,    0,  134,    2, 0x08,    6 /* Private */,
-       8,    0,  135,    2, 0x08,    7 /* Private */,
-       9,    0,  136,    2, 0x08,    8 /* Private */,
-      10,    0,  137,    2, 0x08,    9 /* Private */,
-      11,    0,  138,    2, 0x08,   10 /* Private */,
-      12,    0,  139,    2, 0x08,   11 /* Private */,
-      13,    0,  140,    2, 0x08,   12 /* Private */,
-      14,    0,  141,    2, 0x08,   13 /* Private */,
-      15,    0,  142,    2, 0x08,   14 /* Private */,
-      16,    0,  143,    2, 0x08,   15 /* Private */,
-      17,    0,  144,    2, 0x08,   16 /* Private */,
-      18,    1,  145,    2, 0x08,   17 /* Private */,
-      20,    0,  148,    2, 0x08,   19 /* Private */,
-      21,    0,  149,    2, 0x08,   20 /* Private */,
-      22,    0,  150,    2, 0x08,   21 /* Private */,
+       1,    1,  194,    2, 0x08,    1 /* Private */,
+       4,    0,  197,    2, 0x08,    3 /* Private */,
+       5,    0,  198,    2, 0x08,    4 /* Private */,
+       6,    0,  199,    2, 0x08,    5 /* Private */,
+       7,    0,  200,    2, 0x08,    6 /* Private */,
+       8,    0,  201,    2, 0x08,    7 /* Private */,
+       9,    0,  202,    2, 0x08,    8 /* Private */,
+      10,    0,  203,    2, 0x08,    9 /* Private */,
+      11,    0,  204,    2, 0x08,   10 /* Private */,
+      12,    0,  205,    2, 0x08,   11 /* Private */,
+      13,    0,  206,    2, 0x08,   12 /* Private */,
+      14,    0,  207,    2, 0x08,   13 /* Private */,
+      15,    0,  208,    2, 0x08,   14 /* Private */,
+      16,    0,  209,    2, 0x08,   15 /* Private */,
+      17,    0,  210,    2, 0x08,   16 /* Private */,
+      18,    1,  211,    2, 0x08,   17 /* Private */,
+      20,    0,  214,    2, 0x08,   19 /* Private */,
+      21,    0,  215,    2, 0x08,   20 /* Private */,
+      22,    0,  216,    2, 0x08,   21 /* Private */,
+      23,    0,  217,    2, 0x08,   22 /* Private */,
+      24,    0,  218,    2, 0x08,   23 /* Private */,
+      25,    1,  219,    2, 0x08,   24 /* Private */,
+      27,    1,  222,    2, 0x08,   26 /* Private */,
+      30,    0,  225,    2, 0x08,   28 /* Private */,
+      31,    0,  226,    2, 0x08,   29 /* Private */,
+      32,    0,  227,    2, 0x08,   30 /* Private */,
+      33,    0,  228,    2, 0x08,   31 /* Private */,
+      34,    1,  229,    2, 0x08,   32 /* Private */,
+      35,    0,  232,    2, 0x08,   34 /* Private */,
+      36,    1,  233,    2, 0x08,   35 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -162,6 +218,17 @@ Q_CONSTINIT static const uint qt_meta_data_SOSGame[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   26,
+    QMetaType::Void, 0x80000000 | 28,   29,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 28,   29,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   37,
 
        0        // eod
 };
@@ -214,7 +281,33 @@ Q_CONSTINIT const QMetaObject SOSGame::staticMetaObject = { {
         // method 'startComputerVsComputer'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'gameOverOptions'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'handleRestart'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'resumeGame'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_RecordGameBox_stateChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'recordMove'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const GameMove &, std::false_type>,
+        // method 'startRecording'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'stopRecording'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_ReplayGameButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'loadRecordedGame'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'applyMove'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const GameMove &, std::false_type>,
+        // method 'performReplayStep'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'initializeBoardForReplay'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -244,6 +337,17 @@ void SOSGame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 16: _t->simulateComputerTurn(); break;
         case 17: _t->startComputerVsComputer(); break;
         case 18: _t->gameOverOptions(); break;
+        case 19: _t->handleRestart(); break;
+        case 20: _t->resumeGame(); break;
+        case 21: _t->on_RecordGameBox_stateChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 22: _t->recordMove((*reinterpret_cast< std::add_pointer_t<GameMove>>(_a[1]))); break;
+        case 23: _t->startRecording(); break;
+        case 24: _t->stopRecording(); break;
+        case 25: _t->on_ReplayGameButton_clicked(); break;
+        case 26: _t->loadRecordedGame(); break;
+        case 27: _t->applyMove((*reinterpret_cast< std::add_pointer_t<GameMove>>(_a[1]))); break;
+        case 28: _t->performReplayStep(); break;
+        case 29: _t->initializeBoardForReplay((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -268,13 +372,13 @@ int SOSGame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 30)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 30;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 30)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 19;
+        _id -= 30;
     }
     return _id;
 }

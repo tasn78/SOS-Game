@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -33,29 +34,6 @@ class Ui_SOSGame
 public:
     QWidget *centralwidget;
     QGridLayout *gridLayout;
-    QVBoxLayout *verticalLayout;
-    QSpacerItem *verticalSpacer_5;
-    QRadioButton *player1Human;
-    QRadioButton *player1Computer;
-    QSpacerItem *verticalSpacer_3;
-    QLabel *player1ScoreLabel;
-    QLabel *player1Score;
-    QSpacerItem *verticalSpacer;
-    QLabel *label_3;
-    QRadioButton *player1_S;
-    QRadioButton *player1_O;
-    QGridLayout *GameBoard;
-    QTableWidget *SOSGameBoard;
-    QLabel *currentTurnLabel;
-    QPushButton *pushButton;
-    QSpacerItem *horizontalSpacer;
-    QHBoxLayout *horizontalLayout;
-    QRadioButton *SimpleGameButton;
-    QRadioButton *GeneralGameButton;
-    QLabel *BoardSizeLabel;
-    QSlider *BoardSizeSlider;
-    QLabel *BoardSizeOutput;
-    QPushButton *StartButton;
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer_6;
     QRadioButton *player2Human;
@@ -67,18 +45,43 @@ public:
     QLabel *label_4;
     QRadioButton *player2_S;
     QRadioButton *player2_O;
+    QHBoxLayout *horizontalLayout;
+    QRadioButton *SimpleGameButton;
+    QRadioButton *GeneralGameButton;
+    QLabel *BoardSizeLabel;
+    QSlider *BoardSizeSlider;
+    QLabel *BoardSizeOutput;
+    QPushButton *StartButton;
+    QPushButton *pushButton;
+    QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer_5;
+    QRadioButton *player1Human;
+    QRadioButton *player1Computer;
+    QSpacerItem *verticalSpacer_3;
+    QLabel *player1ScoreLabel;
+    QLabel *player1Score;
+    QSpacerItem *verticalSpacer;
+    QLabel *label_3;
+    QRadioButton *player1_S;
+    QRadioButton *player1_O;
+    QSpacerItem *horizontalSpacer;
+    QGridLayout *GameBoard;
+    QTableWidget *SOSGameBoard;
+    QLabel *currentTurnLabel;
+    QPushButton *ReplayGameButton;
+    QCheckBox *RecordGameBox;
     QStatusBar *statusbar;
+    QButtonGroup *player1HumanOrComp;
     QButtonGroup *Player2MoveButtonGroup;
     QButtonGroup *GameTypeButtonGroup;
-    QButtonGroup *Player1MoveButtonGroup;
-    QButtonGroup *player1HumanOrComp;
     QButtonGroup *player2HumanOrComputer;
+    QButtonGroup *Player1MoveButtonGroup;
 
     void setupUi(QMainWindow *SOSGame)
     {
         if (SOSGame->objectName().isEmpty())
             SOSGame->setObjectName("SOSGame");
-        SOSGame->resize(679, 630);
+        SOSGame->resize(755, 649);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -92,113 +95,72 @@ public:
         centralwidget->setMinimumSize(QSize(50, 50));
         gridLayout = new QGridLayout(centralwidget);
         gridLayout->setObjectName("gridLayout");
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName("verticalLayout");
-        verticalLayout->setSizeConstraint(QLayout::SetMinimumSize);
-        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        verticalLayout_2->setSizeConstraint(QLayout::SetMinimumSize);
+        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer_5);
+        verticalLayout_2->addItem(verticalSpacer_6);
 
-        player1Human = new QRadioButton(centralwidget);
-        player1HumanOrComp = new QButtonGroup(SOSGame);
-        player1HumanOrComp->setObjectName("player1HumanOrComp");
-        player1HumanOrComp->addButton(player1Human);
-        player1Human->setObjectName("player1Human");
+        player2Human = new QRadioButton(centralwidget);
+        player2HumanOrComputer = new QButtonGroup(SOSGame);
+        player2HumanOrComputer->setObjectName("player2HumanOrComputer");
+        player2HumanOrComputer->addButton(player2Human);
+        player2Human->setObjectName("player2Human");
 
-        verticalLayout->addWidget(player1Human);
+        verticalLayout_2->addWidget(player2Human);
 
-        player1Computer = new QRadioButton(centralwidget);
-        player1HumanOrComp->addButton(player1Computer);
-        player1Computer->setObjectName("player1Computer");
+        player2Computer = new QRadioButton(centralwidget);
+        player2HumanOrComputer->addButton(player2Computer);
+        player2Computer->setObjectName("player2Computer");
 
-        verticalLayout->addWidget(player1Computer);
+        verticalLayout_2->addWidget(player2Computer);
 
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer_3);
+        verticalLayout_2->addItem(verticalSpacer_4);
 
-        player1ScoreLabel = new QLabel(centralwidget);
-        player1ScoreLabel->setObjectName("player1ScoreLabel");
+        player2ScoreLabel = new QLabel(centralwidget);
+        player2ScoreLabel->setObjectName("player2ScoreLabel");
 
-        verticalLayout->addWidget(player1ScoreLabel);
+        verticalLayout_2->addWidget(player2ScoreLabel);
 
-        player1Score = new QLabel(centralwidget);
-        player1Score->setObjectName("player1Score");
-        player1Score->setAlignment(Qt::AlignCenter);
+        player2Score = new QLabel(centralwidget);
+        player2Score->setObjectName("player2Score");
+        player2Score->setAlignment(Qt::AlignCenter);
 
-        verticalLayout->addWidget(player1Score);
+        verticalLayout_2->addWidget(player2Score);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer);
+        verticalLayout_2->addItem(verticalSpacer_2);
 
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName("label_3");
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName("label_4");
         QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
-        label_3->setSizePolicy(sizePolicy1);
+        sizePolicy1.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
+        label_4->setSizePolicy(sizePolicy1);
 
-        verticalLayout->addWidget(label_3);
+        verticalLayout_2->addWidget(label_4);
 
-        player1_S = new QRadioButton(centralwidget);
-        Player1MoveButtonGroup = new QButtonGroup(SOSGame);
-        Player1MoveButtonGroup->setObjectName("Player1MoveButtonGroup");
-        Player1MoveButtonGroup->addButton(player1_S);
-        player1_S->setObjectName("player1_S");
+        player2_S = new QRadioButton(centralwidget);
+        Player2MoveButtonGroup = new QButtonGroup(SOSGame);
+        Player2MoveButtonGroup->setObjectName("Player2MoveButtonGroup");
+        Player2MoveButtonGroup->addButton(player2_S);
+        player2_S->setObjectName("player2_S");
 
-        verticalLayout->addWidget(player1_S);
+        verticalLayout_2->addWidget(player2_S);
 
-        player1_O = new QRadioButton(centralwidget);
-        Player1MoveButtonGroup->addButton(player1_O);
-        player1_O->setObjectName("player1_O");
+        player2_O = new QRadioButton(centralwidget);
+        Player2MoveButtonGroup->addButton(player2_O);
+        player2_O->setObjectName("player2_O");
 
-        verticalLayout->addWidget(player1_O);
-
-
-        gridLayout->addLayout(verticalLayout, 2, 0, 1, 1);
-
-        GameBoard = new QGridLayout();
-        GameBoard->setSpacing(0);
-        GameBoard->setObjectName("GameBoard");
-        GameBoard->setSizeConstraint(QLayout::SetNoConstraint);
-        GameBoard->setContentsMargins(-1, -1, 0, -1);
-        SOSGameBoard = new QTableWidget(centralwidget);
-        SOSGameBoard->setObjectName("SOSGameBoard");
-        sizePolicy.setHeightForWidth(SOSGameBoard->sizePolicy().hasHeightForWidth());
-        SOSGameBoard->setSizePolicy(sizePolicy);
-        SOSGameBoard->setMinimumSize(QSize(500, 500));
-        SOSGameBoard->setSizeIncrement(QSize(0, 0));
-        SOSGameBoard->setBaseSize(QSize(500, 500));
-        SOSGameBoard->setLayoutDirection(Qt::LeftToRight);
-        SOSGameBoard->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        SOSGameBoard->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        SOSGameBoard->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
-        SOSGameBoard->horizontalHeader()->setVisible(false);
-        SOSGameBoard->horizontalHeader()->setCascadingSectionResizes(false);
-        SOSGameBoard->verticalHeader()->setVisible(false);
-        SOSGameBoard->verticalHeader()->setCascadingSectionResizes(false);
-
-        GameBoard->addWidget(SOSGameBoard, 1, 0, 1, 1, Qt::AlignHCenter|Qt::AlignVCenter);
-
-        currentTurnLabel = new QLabel(centralwidget);
-        currentTurnLabel->setObjectName("currentTurnLabel");
-        currentTurnLabel->setAlignment(Qt::AlignCenter);
-
-        GameBoard->addWidget(currentTurnLabel, 0, 0, 1, 1);
+        verticalLayout_2->addWidget(player2_O);
 
 
-        gridLayout->addLayout(GameBoard, 2, 1, 1, 1);
-
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName("pushButton");
-
-        gridLayout->addWidget(pushButton, 5, 1, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer, 4, 1, 1, 1);
+        gridLayout->addLayout(verticalLayout_2, 2, 2, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
@@ -249,69 +211,120 @@ public:
 
         gridLayout->addLayout(horizontalLayout, 0, 0, 1, 3);
 
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        verticalLayout_2->setSizeConstraint(QLayout::SetMinimumSize);
-        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName("pushButton");
 
-        verticalLayout_2->addItem(verticalSpacer_6);
+        gridLayout->addWidget(pushButton, 5, 1, 1, 1);
 
-        player2Human = new QRadioButton(centralwidget);
-        player2HumanOrComputer = new QButtonGroup(SOSGame);
-        player2HumanOrComputer->setObjectName("player2HumanOrComputer");
-        player2HumanOrComputer->addButton(player2Human);
-        player2Human->setObjectName("player2Human");
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setSizeConstraint(QLayout::SetMinimumSize);
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_2->addWidget(player2Human);
+        verticalLayout->addItem(verticalSpacer_5);
 
-        player2Computer = new QRadioButton(centralwidget);
-        player2HumanOrComputer->addButton(player2Computer);
-        player2Computer->setObjectName("player2Computer");
+        player1Human = new QRadioButton(centralwidget);
+        player1HumanOrComp = new QButtonGroup(SOSGame);
+        player1HumanOrComp->setObjectName("player1HumanOrComp");
+        player1HumanOrComp->addButton(player1Human);
+        player1Human->setObjectName("player1Human");
 
-        verticalLayout_2->addWidget(player2Computer);
+        verticalLayout->addWidget(player1Human);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        player1Computer = new QRadioButton(centralwidget);
+        player1HumanOrComp->addButton(player1Computer);
+        player1Computer->setObjectName("player1Computer");
 
-        verticalLayout_2->addItem(verticalSpacer_4);
+        verticalLayout->addWidget(player1Computer);
 
-        player2ScoreLabel = new QLabel(centralwidget);
-        player2ScoreLabel->setObjectName("player2ScoreLabel");
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_2->addWidget(player2ScoreLabel);
+        verticalLayout->addItem(verticalSpacer_3);
 
-        player2Score = new QLabel(centralwidget);
-        player2Score->setObjectName("player2Score");
-        player2Score->setAlignment(Qt::AlignCenter);
+        player1ScoreLabel = new QLabel(centralwidget);
+        player1ScoreLabel->setObjectName("player1ScoreLabel");
 
-        verticalLayout_2->addWidget(player2Score);
+        verticalLayout->addWidget(player1ScoreLabel);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        player1Score = new QLabel(centralwidget);
+        player1Score->setObjectName("player1Score");
+        player1Score->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_2->addItem(verticalSpacer_2);
+        verticalLayout->addWidget(player1Score);
 
-        label_4 = new QLabel(centralwidget);
-        label_4->setObjectName("label_4");
-        sizePolicy1.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
-        label_4->setSizePolicy(sizePolicy1);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_2->addWidget(label_4);
+        verticalLayout->addItem(verticalSpacer);
 
-        player2_S = new QRadioButton(centralwidget);
-        Player2MoveButtonGroup = new QButtonGroup(SOSGame);
-        Player2MoveButtonGroup->setObjectName("Player2MoveButtonGroup");
-        Player2MoveButtonGroup->addButton(player2_S);
-        player2_S->setObjectName("player2_S");
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName("label_3");
+        sizePolicy1.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy1);
 
-        verticalLayout_2->addWidget(player2_S);
+        verticalLayout->addWidget(label_3);
 
-        player2_O = new QRadioButton(centralwidget);
-        Player2MoveButtonGroup->addButton(player2_O);
-        player2_O->setObjectName("player2_O");
+        player1_S = new QRadioButton(centralwidget);
+        Player1MoveButtonGroup = new QButtonGroup(SOSGame);
+        Player1MoveButtonGroup->setObjectName("Player1MoveButtonGroup");
+        Player1MoveButtonGroup->addButton(player1_S);
+        player1_S->setObjectName("player1_S");
 
-        verticalLayout_2->addWidget(player2_O);
+        verticalLayout->addWidget(player1_S);
+
+        player1_O = new QRadioButton(centralwidget);
+        Player1MoveButtonGroup->addButton(player1_O);
+        player1_O->setObjectName("player1_O");
+
+        verticalLayout->addWidget(player1_O);
 
 
-        gridLayout->addLayout(verticalLayout_2, 2, 2, 1, 1);
+        gridLayout->addLayout(verticalLayout, 2, 0, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 4, 1, 1, 1);
+
+        GameBoard = new QGridLayout();
+        GameBoard->setSpacing(0);
+        GameBoard->setObjectName("GameBoard");
+        GameBoard->setSizeConstraint(QLayout::SetNoConstraint);
+        GameBoard->setContentsMargins(-1, -1, 0, -1);
+        SOSGameBoard = new QTableWidget(centralwidget);
+        SOSGameBoard->setObjectName("SOSGameBoard");
+        sizePolicy.setHeightForWidth(SOSGameBoard->sizePolicy().hasHeightForWidth());
+        SOSGameBoard->setSizePolicy(sizePolicy);
+        SOSGameBoard->setMinimumSize(QSize(500, 500));
+        SOSGameBoard->setSizeIncrement(QSize(0, 0));
+        SOSGameBoard->setBaseSize(QSize(500, 500));
+        SOSGameBoard->setLayoutDirection(Qt::LeftToRight);
+        SOSGameBoard->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        SOSGameBoard->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        SOSGameBoard->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+        SOSGameBoard->horizontalHeader()->setVisible(false);
+        SOSGameBoard->horizontalHeader()->setCascadingSectionResizes(false);
+        SOSGameBoard->verticalHeader()->setVisible(false);
+        SOSGameBoard->verticalHeader()->setCascadingSectionResizes(false);
+
+        GameBoard->addWidget(SOSGameBoard, 1, 0, 1, 1, Qt::AlignHCenter|Qt::AlignVCenter);
+
+        currentTurnLabel = new QLabel(centralwidget);
+        currentTurnLabel->setObjectName("currentTurnLabel");
+        currentTurnLabel->setAlignment(Qt::AlignCenter);
+
+        GameBoard->addWidget(currentTurnLabel, 0, 0, 1, 1);
+
+
+        gridLayout->addLayout(GameBoard, 2, 1, 1, 1);
+
+        ReplayGameButton = new QPushButton(centralwidget);
+        ReplayGameButton->setObjectName("ReplayGameButton");
+
+        gridLayout->addWidget(ReplayGameButton, 5, 2, 1, 1);
+
+        RecordGameBox = new QCheckBox(centralwidget);
+        RecordGameBox->setObjectName("RecordGameBox");
+
+        gridLayout->addWidget(RecordGameBox, 5, 0, 1, 1);
 
         SOSGame->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(SOSGame);
@@ -326,6 +339,19 @@ public:
     void retranslateUi(QMainWindow *SOSGame)
     {
         SOSGame->setWindowTitle(QCoreApplication::translate("SOSGame", "SOSGame", nullptr));
+        player2Human->setText(QCoreApplication::translate("SOSGame", "Player 2", nullptr));
+        player2Computer->setText(QCoreApplication::translate("SOSGame", "Computer", nullptr));
+        player2ScoreLabel->setText(QCoreApplication::translate("SOSGame", "Player 2 Score", nullptr));
+        player2Score->setText(QCoreApplication::translate("SOSGame", "0", nullptr));
+        label_4->setText(QCoreApplication::translate("SOSGame", "Player 2 : Red", nullptr));
+        player2_S->setText(QCoreApplication::translate("SOSGame", "S", nullptr));
+        player2_O->setText(QCoreApplication::translate("SOSGame", "O", nullptr));
+        SimpleGameButton->setText(QCoreApplication::translate("SOSGame", "Simple Game", nullptr));
+        GeneralGameButton->setText(QCoreApplication::translate("SOSGame", "General Game", nullptr));
+        BoardSizeLabel->setText(QCoreApplication::translate("SOSGame", "Board Size", nullptr));
+        BoardSizeOutput->setText(QCoreApplication::translate("SOSGame", "3", nullptr));
+        StartButton->setText(QCoreApplication::translate("SOSGame", "Start Game", nullptr));
+        pushButton->setText(QCoreApplication::translate("SOSGame", "Quit Game", nullptr));
         player1Human->setText(QCoreApplication::translate("SOSGame", "Player 1", nullptr));
         player1Computer->setText(QCoreApplication::translate("SOSGame", "Computer", nullptr));
         player1ScoreLabel->setText(QCoreApplication::translate("SOSGame", "Player 1 Score", nullptr));
@@ -334,19 +360,8 @@ public:
         player1_S->setText(QCoreApplication::translate("SOSGame", "S", nullptr));
         player1_O->setText(QCoreApplication::translate("SOSGame", "O", nullptr));
         currentTurnLabel->setText(QCoreApplication::translate("SOSGame", "Current turn: ", nullptr));
-        pushButton->setText(QCoreApplication::translate("SOSGame", "Quit Game", nullptr));
-        SimpleGameButton->setText(QCoreApplication::translate("SOSGame", "Simple Game", nullptr));
-        GeneralGameButton->setText(QCoreApplication::translate("SOSGame", "General Game", nullptr));
-        BoardSizeLabel->setText(QCoreApplication::translate("SOSGame", "Board Size", nullptr));
-        BoardSizeOutput->setText(QCoreApplication::translate("SOSGame", "3", nullptr));
-        StartButton->setText(QCoreApplication::translate("SOSGame", "Start Game", nullptr));
-        player2Human->setText(QCoreApplication::translate("SOSGame", "Player 2", nullptr));
-        player2Computer->setText(QCoreApplication::translate("SOSGame", "Computer", nullptr));
-        player2ScoreLabel->setText(QCoreApplication::translate("SOSGame", "Player 2 Score", nullptr));
-        player2Score->setText(QCoreApplication::translate("SOSGame", "0", nullptr));
-        label_4->setText(QCoreApplication::translate("SOSGame", "Player 2 : Red", nullptr));
-        player2_S->setText(QCoreApplication::translate("SOSGame", "S", nullptr));
-        player2_O->setText(QCoreApplication::translate("SOSGame", "O", nullptr));
+        ReplayGameButton->setText(QCoreApplication::translate("SOSGame", "Replay Game", nullptr));
+        RecordGameBox->setText(QCoreApplication::translate("SOSGame", "Record Game", nullptr));
     } // retranslateUi
 
 };
