@@ -35,12 +35,14 @@ void SOSGame::on_StartButton_clicked()
 {
     if (GameType != 'S' && GameType != 'G'){
         QMessageBox::critical(this, "Unable to start the game", "You must choose a Simple or General game mode");
+        return;
     }
 
     if ((GamePlayers.getPlayer1Human() != 0 && GamePlayers.getPlayer1Human() != 1) ||
         (GamePlayers.getPlayer2Human() != 0 && GamePlayers.getPlayer2Human() != 1))
     {
         QMessageBox::critical(this, "Unable to start the game", "You must choose an option for Player 1 and Player 2 as a computer or player");
+        return;
     }
 
     else{
@@ -217,7 +219,7 @@ void SOSGame::gameBoardButtonClick(){
         }
     }
 
-    else if (GameMode == 'G'){
+    else if (GameMode == 'G'){ // General game mode
         //  Sets player 1 move to S or O as blue text
         if (playerTurn == 1){
             if (clickedButton->text()== ""){
@@ -454,7 +456,7 @@ void SOSGame::startComputerVsComputer() {
 
 // Options when the game is over
 void SOSGame::gameOverOptions() {
-    // Create a non-modal message box
+    // Create a message box displaying game options
     QMessageBox* msgBox = new QMessageBox(this);
     msgBox->setWindowTitle("Game Over");
     msgBox->setText("Would you like to restart or continue?");

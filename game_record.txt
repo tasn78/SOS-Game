@@ -1,12 +1,9 @@
-Game Type: G
+Game Type: S
 BoardSize:3
 Player,Row,Column,Symbol
 1,0,0,S
 2,1,1,O
-1,2,2,S
-1,2,0,S
+1,0,2,S
 2,1,0,O
-2,0,2,O
-1,0,1,S
-2,2,1,O
+1,2,1,S
 2,1,2,O
