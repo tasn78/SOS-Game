@@ -172,14 +172,13 @@ bool GameMode::checkSOSWithOInCenter(int row, int column, std::vector<std::vecto
 bool GameMode::checkGameCompletion(std::vector<std::vector<QPushButton*>>& gameBoard) {
     for (const auto& row : gameBoard) {
         for (QPushButton* button : row) {
-            if (button && (button->text() != "S" && button->text() != "O")) {
-                return false; // A button contains neither 'S' nor 'O'
+            if (button && button->text().isEmpty()) {
+                return false; // If a button is still empty, game is not complete
             }
         }
     }
-    return true; // All buttons contain 'S' or 'O'
+    return true; // No empty buttons, the game board is full
 }
-
 
 // Checks if row is valid for iterating through the SOSGameBoard checking for SOS
 bool GameMode::isRowValid(int row, int boardSize) {

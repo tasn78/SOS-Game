@@ -182,7 +182,7 @@ void SOSGame::gameBoardButtonClick(){
                     GamePlayers.switchPlayerTurn();
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
                     ;
-                    if (GamePlayers.getPlayer2Human() == 0){
+                    if (GamePlayers.getPlayer2Human() == 0 && gameOverExecuted == false){
                         makeComputerMove(GamePlayers.getPlayerTurn());
                         GamePlayers.switchPlayerTurn();
                     }
@@ -207,7 +207,7 @@ void SOSGame::gameBoardButtonClick(){
                     isSimpleGameOver(row, column, vectorBoard, boardSize);
                     GamePlayers.switchPlayerTurn();
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
-                    if (GamePlayers.getPlayer1Human() == 0){
+                    if (GamePlayers.getPlayer1Human() == 0 && gameOverExecuted == false){
                         makeComputerMove(GamePlayers.getPlayerTurn());
                         GamePlayers.switchPlayerTurn();
                     }
@@ -234,10 +234,13 @@ void SOSGame::gameBoardButtonClick(){
                         recordMove(move);
                     }
                 if (clickedButton->text() != ""){
-                    isGeneralGameOver(row, column, vectorBoard, boardSize);
+                    bool generalGameOver = isGeneralGameOver(row, column, vectorBoard, boardSize);
+                    if (generalGameOver){
+                        return;
+                    }
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
                     if (GamePlayers.getPlayer2Human() == 0 && GamePlayers.getPlayerTurn() == 2){
-                        while (GamePlayers.getPlayerTurn() == 2){
+                        while (GamePlayers.getPlayerTurn() == 2 && gameOverExecuted == false){
                             makeComputerMove(GamePlayers.getPlayerTurn());
                         }
                     }
@@ -259,12 +262,14 @@ void SOSGame::gameBoardButtonClick(){
                         recordMove(move);
                     }
                 if (clickedButton->text() != ""){
-                    isGeneralGameOver(row, column, vectorBoard, boardSize);
+                    bool generalGameOver = isGeneralGameOver(row, column, vectorBoard, boardSize);
+                    if (generalGameOver){
+                        return;
+                    }
                     ui->currentTurnLabel->setText("Current turn: Player " + QString::number(GamePlayers.getPlayerTurn()));
                     if (GamePlayers.getPlayer1Human() == 0 && GamePlayers.getPlayerTurn() == 1){
-                        while (GamePlayers.getPlayerTurn() == 1){
+                        while (GamePlayers.getPlayerTurn() == 1 && gameOverExecuted == false){
                             makeComputerMove(GamePlayers.getPlayerTurn());
-                        }
                     }
                 }
             }
@@ -273,6 +278,7 @@ void SOSGame::gameBoardButtonClick(){
             QMessageBox::critical(this, "You must choose an S or O", "");
         }
     }
+    }
 }
 
 //  Checks board to see if simple game is over by the board being completely filled or an SOS has been created
@@ -280,15 +286,6 @@ bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPus
     // Check for SOS
     SimpleGame game;
 
-    if (game.checkGameCompletion(gameBoard)){
-        if (!gameOverExecuted) {
-            gameOverExecuted = true;
-            QMessageBox::information(this, "Game Over", "Game ends in a draw!");
-            gameOverOptions();
-            GameOver = true;
-        }
-        return true; // The game is over
-    }
     if (game.checkForSOS(row, column, gameBoard, boardSize)) {
         if (!gameOverExecuted) {
             gameOverExecuted = true;
@@ -305,6 +302,16 @@ bool SOSGame::isSimpleGameOver(int row, int column, std::vector<std::vector<QPus
 
             // Show a QMessageBox declaring the winner
             QMessageBox::information(this, "Game Over", winner + " wins!");
+            gameOverOptions();
+            GameOver = true;
+        }
+        return true; // The game is over
+    }
+    // Check for a draw
+    if (game.checkGameCompletion(gameBoard)){
+        if (!gameOverExecuted) {
+            gameOverExecuted = true;
+            QMessageBox::information(this, "Game Over", "Game ends in a draw!");
             gameOverOptions();
             GameOver = true;
         }
@@ -562,7 +569,7 @@ void SOSGame::on_player2Computer_clicked(){
 void SOSGame::on_RecordGameBox_stateChanged(int arg1){
     if (arg1 == Qt::Unchecked) {
         // Checkbox is unchecked - stop recording or do nothing
-        stopRecording();  // Implement this function as per your requirements
+        stopRecording();
     }
 }
 
@@ -618,18 +625,36 @@ void SOSGame::loadRecordedGame() {
     char gameType;
     int readBoardSize;
 
-    // Read game type and board size
+    // Check if the file is empty
+    if (in.atEnd()) {
+        QMessageBox::warning(this, "Replay Error", "The record file is empty.");
+        return;
+    }
+
+    // Read game type and board size with error checking
     line = in.readLine(); // Read game type line
+    if (!line.contains("Game Type:")) {
+        QMessageBox::warning(this, "Replay Error", "Invalid file format: missing game type.");
+        return;
+    }
     gameType = line.split(":")[1].trimmed().toStdString()[0];
 
-    line = in.readLine(); // Read board size line
+    line = in.readLine(); // Read boardsize line
+    if (!line.contains("BoardSize:")) {
+        QMessageBox::warning(this, "Replay Error", "Invalid file format: missing board size.");
+        return;
+    }
     readBoardSize = line.split(":")[1].trimmed().toInt();
+    if (readBoardSize <= 0) {
+        QMessageBox::warning(this, "Replay Error", "Invalid board size in the file.");
+        return;
+    }
 
     // Set up the game for replay
     setGameType(gameType);
-    initializeBoardForReplay(readBoardSize); // Implement this function to set up the board
+    initializeBoardForReplay(readBoardSize); // Initializes board
 
-    recordedMoves.clear(); // Clear previous moves if any
+    recordedMoves.clear(); // Clear previous moves
     while (!in.atEnd()) {
         line = in.readLine();
         if (line.contains("Player")) { // Skip header line
@@ -643,10 +668,13 @@ void SOSGame::loadRecordedGame() {
             move.column = parts[2].toInt();
             move.symbol = parts[3].toStdString()[0];
             recordedMoves.append(move);
+        } else {
+            QMessageBox::warning(this, "Replay Error", "Invalid move format in the file.");
+            recordedMoves.clear();
+            return;
         }
     }
 }
-
 // Applies move to ui
 void SOSGame::applyMove(const GameMove& move) {
     QPushButton *button = vectorBoard[move.row][move.column];
